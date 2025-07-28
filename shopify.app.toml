@@ -1,0 +1,62 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "Checkout Games"
+client_id = "YOUR_CLIENT_ID"
+application_url = "https://your-app-url.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,write_orders,write_customers,write_discounts,write_marketing_events"
+
+[auth]
+redirect_urls = [
+  "https://your-app-url.com/auth/callback",
+  "https://your-app-url.com/auth/shopify/callback",
+  "https://your-app-url.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "your-dev-store.myshopify.com"
+include_config_on_deploy = true
+
+[extensions]
+  [[extensions.checkout_ui]]
+  name = "Checkout Games UI"
+  handle = "checkout-games-ui"
+  type = "checkout_ui_extension"
+  target = "Checkout::Dynamic::Render"
+  [[extensions.checkout_ui.capabilities]]
+  network_access = true
+  api_access = true
+  block_progress = false
+  [[extensions.checkout_ui.settings]]
+  type = "single_line_text_field"
+  name = "Game Title"
+  description = "Title displayed on the game interface"
+  default = "Spin to Win!"
+  [[extensions.checkout_ui.settings]]
+  type = "single_line_text_field"
+  name = "Prize Description"
+  description = "Description of the prize"
+  default = "Get a discount on your order!"
+
+  [[extensions.admin_ui]]
+  name = "Admin Dashboard"
+  handle = "admin-dashboard"
+  type = "admin_ui_extension"
+  target = "Admin::Nav::Settings"
+  [[extensions.admin_ui.capabilities]]
+  network_access = true
+  api_access = true
+  [[extensions.admin_ui.settings]]
+  type = "single_line_text_field"
+  name = "API Key"
+  description = "Your API key for external services" 

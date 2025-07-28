@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Checkout Games</title>
+    <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@10.0.0/build/esm/styles.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        }
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #5c5f62;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #6d7175;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="app-container">
+            <div class="header">
+                <h1>🎮 Shopify Checkout Games</h1>
+                <p>Interactive games and lottery system for Shopify checkout</p>
+            </div>
+            
+            <!-- Dashboard Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <!-- Stats Cards -->
+                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Total Games Played</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">1,247</p>
+                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">+12% from last month</span>
+                </div>
+                
+                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Total Wins</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">892</p>
+                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">+8% from last month</span>
+                </div>
+                
+                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Conversion Rate</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">71.5%</p>
+                    <div style="background: #e1e3e5; height: 8px; border-radius: 4px; margin-top: 10px;">
+                        <div style="background: #008060; height: 100%; width: 71.5%; border-radius: 4px;"></div>
+                    </div>
+                </div>
+                
+                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Revenue Increase</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">+23.4%</p>
+                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">$2,847 additional revenue</span>
+                </div>
+            </div>
+            
+            <!-- Spin Wheel Demo -->
+            <div style="background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; margin-bottom: 30px;">
+                <h2 style="color: #5c5f62; margin-bottom: 20px;">🎯 Spin to Win!</h2>
+                <div style="position: relative; width: 300px; height: 300px; margin: 0 auto 20px auto;">
+                    <div id="wheel" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3); transition: transform 3s ease-out; position: relative;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid #333; z-index: 10;"></div>
+                </div>
+                <button id="spinBtn" style="background: #008060; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-right: 10px;">Spin the Wheel!</button>
+                <button id="resetBtn" style="background: #6d7175; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; display: none;">Spin Again</button>
+                <div id="result" style="margin-top: 20px; display: none;"></div>
+            </div>
+            
+            <!-- Recent Games Table -->
+            <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #5c5f62; margin: 0 0 20px 0;">Recent Games</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #e1e3e5;">
+                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Customer</th>
+                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Game</th>
+                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Prize</th>
+                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Value</th>
+                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #f6f6f7;">
+                            <td style="padding: 12px;">john@example.com</td>
+                            <td style="padding: 12px;">Spin the Wheel</td>
+                            <td style="padding: 12px;">10% OFF</td>
+                            <td style="padding: 12px;">$15.20</td>
+                            <td style="padding: 12px;">2024-01-15</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f6f6f7;">
+                            <td style="padding: 12px;">sarah@example.com</td>
+                            <td style="padding: 12px;">Scratch Card</td>
+                            <td style="padding: 12px;">Free Shipping</td>
+                            <td style="padding: 12px;">$8.50</td>
+                            <td style="padding: 12px;">2024-01-15</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f6f6f7;">
+                            <td style="padding: 12px;">mike@example.com</td>
+                            <td style="padding: 12px;">Lottery</td>
+                            <td style="padding: 12px;">5% OFF</td>
+                            <td style="padding: 12px;">$12.30</td>
+                            <td style="padding: 12px;">2024-01-14</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Spin Wheel Functionality
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const result = document.getElementById('result');
+        
+        const prizes = [
+            { label: '10% OFF', type: 'win', message: 'Congratulations! You won 10% off your order!' },
+            { label: 'Free Shipping', type: 'win', message: 'Great! Free shipping on your order!' },
+            { label: '5% OFF', type: 'win', message: 'Nice! You got 5% off!' },
+            { label: 'Try Again', type: 'lose', message: 'Better luck next time!' },
+            { label: '15% OFF', type: 'win', message: 'Amazing! 15% off your order!' },
+            { label: 'Free Gift', type: 'win', message: 'You won a free gift!' }
+        ];
+        
+        spinBtn.addEventListener('click', () => {
+            if (spinBtn.disabled) return;
+            
+            spinBtn.disabled = true;
+            spinBtn.textContent = 'Spinning...';
+            
+            // Random spin duration and angle
+            const spinDuration = 3000 + Math.random() * 2000;
+            const finalAngle = Math.random() * 360;
+            
+            wheel.style.transition = `transform ${spinDuration}ms ease-out`;
+            wheel.style.transform = `rotate(${finalAngle}deg)`;
+            
+            setTimeout(() => {
+                // Determine winner
+                const segmentAngle = 360 / prizes.length;
+                const winningIndex = Math.floor((360 - finalAngle) / segmentAngle) % prizes.length;
+                const winningPrize = prizes[winningIndex];
+                
+                result.innerHTML = `
+                    <div style="background: ${winningPrize.type === 'win' ? '#d1fae5' : '#fef3c7'}; padding: 20px; border-radius: 8px;">
+                        <h3 style="margin: 0 0 10px 0; color: ${winningPrize.type === 'win' ? '#065f46' : '#92400e'}">
+                            ${winningPrize.type === 'win' ? '🎉 Congratulations!' : '😔 Try Again!'}
+                        </h3>
+                        <p style="margin: 0; color: ${winningPrize.type === 'win' ? '#065f46' : '#92400e'}">
+                            ${winningPrize.message}
+                        </p>
+                    </div>
+                `;
+                result.style.display = 'block';
+                
+                spinBtn.style.display = 'none';
+                resetBtn.style.display = 'inline-block';
+            }, spinDuration);
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            wheel.style.transition = 'transform 0.1s ease-out';
+            wheel.style.transform = 'rotate(0deg)';
+            result.style.display = 'none';
+            spinBtn.style.display = 'inline-block';
+            resetBtn.style.display = 'none';
+            spinBtn.disabled = false;
+            spinBtn.textContent = 'Spin the Wheel!';
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,54 @@
+{
+  "name": "shopify-checkout-games",
+  "version": "1.0.0",
+  "description": "Interactive games and lottery system for Shopify checkout",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify app dev",
+    "build": "shopify app build",
+    "deploy": "shopify app deploy",
+    "generate": "shopify app generate",
+    "scaffold": "shopify app scaffold",
+    "env": "shopify app env",
+    "info": "shopify app info",
+    "login": "shopify auth login",
+    "logout": "shopify auth logout",
+    "open": "shopify app open",
+    "pull": "shopify app pull",
+    "push": "shopify app push",
+    "serve": "shopify app serve",
+    "tunnel": "shopify app tunnel",
+    "webhook": "shopify app webhook"
+  },
+  "dependencies": {
+    "@shopify/app": "^3.0.0",
+    "@shopify/cli": "^3.0.0",
+    "@shopify/polaris": "^10.0.0",
+    "@shopify/shopify-app-express": "^2.0.0",
+    "@shopify/shopify-app-session-storage-memory": "^1.0.0",
+    "axios": "^1.0.0",
+    "express": "^4.21.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^3.0.0",
+    "typescript": "^4.9.0",
+    "vite": "^4.0.0"
+  },
+  "keywords": [
+    "shopify",
+    "app",
+    "checkout",
+    "games",
+    "lottery",
+    "engagement"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
