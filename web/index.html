@@ -3,184 +3,704 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopify Checkout Games</title>
+    <title>Shopify Checkout Games - Merchant Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@10.0.0/build/esm/styles.css" />
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f6f6f7;
+            color: #202223;
+        }
+        
         .app-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
+        
         .header {
-            text-align: center;
-            margin-bottom: 40px;
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+        
         .header h1 {
-            color: #5c5f62;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            color: #202223;
+            font-size: 2rem;
+            margin-bottom: 8px;
         }
+        
         .header p {
             color: #6d7175;
+            font-size: 1rem;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 1px solid #e1e3e5;
+            margin-bottom: 0;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #6d7175;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-tab.active {
+            color: #008060;
+            border-bottom-color: #008060;
+        }
+        
+        .nav-tab:hover {
+            color: #202223;
+        }
+        
+        .tab-content {
+            background: white;
+            border-radius: 0 0 8px 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .tab-panel {
+            display: none;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #008060;
+        }
+        
+        .stat-card h3 {
+            color: #6d7175;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #202223;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .change {
+            font-size: 0.8rem;
+            color: #008060;
+            font-weight: 500;
+        }
+        
+        .form-section {
+            margin-bottom: 32px;
+        }
+        
+        .form-section h3 {
+            color: #202223;
             font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e1e3e5;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #202223;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #c9cccf;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #008060;
+            box-shadow: 0 0 0 1px #008060;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .prize-item {
+            background: #f6f6f7;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #e1e3e5;
+        }
+        
+        .prize-item h4 {
+            color: #202223;
+            margin-bottom: 8px;
+        }
+        
+        .prize-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #008060;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #006b52;
+        }
+        
+        .btn-secondary {
+            background: #6d7175;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a5d60;
+        }
+        
+        .btn-danger {
+            background: #d82c0d;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #b8250b;
+        }
+        
+        .color-picker {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .color-picker input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .preview-section {
+            background: #f6f6f7;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        .preview-section h4 {
+            color: #202223;
+            margin-bottom: 16px;
+        }
+        
+        .game-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .game-preview .logo {
+            width: 80px;
+            height: 80px;
+            background: #e1e3e5;
+            border-radius: 8px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6d7175;
+            font-size: 0.8rem;
+        }
+        
+        .game-preview .wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            position: relative;
+        }
+        
+        .game-preview .wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 16px solid #333;
+        }
+        
+        .game-preview .btn {
+            background: var(--primary-color, #008060);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .prize-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="root">
-        <div class="app-container">
-            <div class="header">
-                <h1>🎮 Shopify Checkout Games</h1>
-                <p>Interactive games and lottery system for Shopify checkout</p>
-            </div>
-            
-            <!-- Dashboard Content -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                <!-- Stats Cards -->
-                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Total Games Played</h3>
-                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">1,247</p>
-                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">+12% from last month</span>
-                </div>
-                
-                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Total Wins</h3>
-                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">892</p>
-                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">+8% from last month</span>
-                </div>
-                
-                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Conversion Rate</h3>
-                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">71.5%</p>
-                    <div style="background: #e1e3e5; height: 8px; border-radius: 4px; margin-top: 10px;">
-                        <div style="background: #008060; height: 100%; width: 71.5%; border-radius: 4px;"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎮 Shopify Checkout Games</h1>
+            <p>Increase conversions with interactive games at checkout</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('dashboard')">Dashboard</button>
+            <button class="nav-tab" onclick="showTab('configuration')">Game Configuration</button>
+            <button class="nav-tab" onclick="showTab('analytics')">Analytics</button>
+            <button class="nav-tab" onclick="showTab('customers')">Customers</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content">
+            <div class="tab-panel active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Impressions</h3>
+                        <div class="value">1,247</div>
+                        <div class="change">+12% from last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Emails Collected</h3>
+                        <div class="value">892</div>
+                        <div class="change">+8% from last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Conversion Rate</h3>
+                        <div class="value">71.5%</div>
+                        <div class="change">+5% from last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Sales from Coupons</h3>
+                        <div class="value">$2,847</div>
+                        <div class="change">+23% from last week</div>
                     </div>
                 </div>
-                
-                <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #5c5f62; margin: 0 0 10px 0;">Revenue Increase</h3>
-                    <p style="font-size: 2rem; font-weight: bold; color: #008060; margin: 0;">+23.4%</p>
-                    <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">$2,847 additional revenue</span>
+
+                <div class="form-section">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showTab('configuration')">Configure Game</button>
+                        <button class="btn btn-secondary" onclick="showTab('analytics')">View Analytics</button>
+                        <button class="btn btn-secondary" onclick="showTab('customers')">Manage Customers</button>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Spin Wheel Demo -->
-            <div style="background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; margin-bottom: 30px;">
-                <h2 style="color: #5c5f62; margin-bottom: 20px;">🎯 Spin to Win!</h2>
-                <div style="position: relative; width: 300px; height: 300px; margin: 0 auto 20px auto;">
-                    <div id="wheel" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3); transition: transform 3s ease-out; position: relative;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid #333; z-index: 10;"></div>
+        </div>
+
+        <!-- Configuration Tab -->
+        <div id="configuration" class="tab-content">
+            <div class="tab-panel">
+                <div class="form-section">
+                    <h3>🎯 Spin the Wheel Configuration</h3>
+                    
+                    <div class="form-group">
+                        <label>Game Title</label>
+                        <input type="text" id="gameTitle" value="Spin to Win!" placeholder="Enter game title">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Game Description</label>
+                        <textarea id="gameDescription" rows="3" placeholder="Enter game description">Try your luck and win amazing discounts on your order!</textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primary Color</label>
+                            <div class="color-picker">
+                                <input type="color" id="primaryColor" value="#008060">
+                                <span>Main button and accent color</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Secondary Color</label>
+                            <div class="color-picker">
+                                <input type="color" id="secondaryColor" value="#4ecdc4">
+                                <span>Wheel and background color</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Brand Logo</label>
+                        <input type="file" id="brandLogo" accept="image/*">
+                        <small style="color: #6d7175; margin-top: 4px; display: block;">Upload your brand logo (recommended: 200x200px)</small>
+                    </div>
                 </div>
-                <button id="spinBtn" style="background: #008060; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-right: 10px;">Spin the Wheel!</button>
-                <button id="resetBtn" style="background: #6d7175; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; display: none;">Spin Again</button>
-                <div id="result" style="margin-top: 20px; display: none;"></div>
+
+                <div class="form-section">
+                    <h3>🎁 Prize Configuration</h3>
+                    <p style="color: #6d7175; margin-bottom: 16px;">Configure up to 6 prizes with their win probabilities</p>
+                    
+                    <div id="prizesContainer">
+                        <div class="prize-item">
+                            <h4>Prize 1</h4>
+                            <div class="prize-controls">
+                                <div class="form-group">
+                                    <label>Prize Type</label>
+                                    <select class="prize-type">
+                                        <option value="discount">Discount Code</option>
+                                        <option value="freeshipping">Free Shipping</option>
+                                        <option value="freegift">Free Gift</option>
+                                        <option value="nothing">No Prize</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Value</label>
+                                    <input type="text" class="prize-value" placeholder="e.g., 10% OFF, $5 OFF">
+                                </div>
+                                <div class="form-group">
+                                    <label>Win Probability (%)</label>
+                                    <input type="number" class="prize-probability" value="20" min="0" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-danger" onclick="removePrize(this)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" onclick="addPrize()">+ Add Prize</button>
+                </div>
+
+                <div class="preview-section">
+                    <h4>🎮 Game Preview</h4>
+                    <div class="game-preview">
+                        <div class="logo" id="previewLogo">LOGO</div>
+                        <h3 id="previewTitle">Spin to Win!</h3>
+                        <p id="previewDescription">Try your luck and win amazing discounts on your order!</p>
+                        <div class="wheel" id="previewWheel"></div>
+                        <button class="btn" id="previewButton">Spin the Wheel!</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <button class="btn btn-primary" onclick="saveConfiguration()">Save Configuration</button>
+                </div>
             </div>
-            
-            <!-- Recent Games Table -->
-            <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <h3 style="color: #5c5f62; margin: 0 0 20px 0;">Recent Games</h3>
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="border-bottom: 1px solid #e1e3e5;">
-                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Customer</th>
-                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Game</th>
-                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Prize</th>
-                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Value</th>
-                            <th style="text-align: left; padding: 12px; color: #5c5f62;">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #f6f6f7;">
-                            <td style="padding: 12px;">john@example.com</td>
-                            <td style="padding: 12px;">Spin the Wheel</td>
-                            <td style="padding: 12px;">10% OFF</td>
-                            <td style="padding: 12px;">$15.20</td>
-                            <td style="padding: 12px;">2024-01-15</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f6f6f7;">
-                            <td style="padding: 12px;">sarah@example.com</td>
-                            <td style="padding: 12px;">Scratch Card</td>
-                            <td style="padding: 12px;">Free Shipping</td>
-                            <td style="padding: 12px;">$8.50</td>
-                            <td style="padding: 12px;">2024-01-15</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f6f6f7;">
-                            <td style="padding: 12px;">mike@example.com</td>
-                            <td style="padding: 12px;">Lottery</td>
-                            <td style="padding: 12px;">5% OFF</td>
-                            <td style="padding: 12px;">$12.30</td>
-                            <td style="padding: 12px;">2024-01-14</td>
-                        </tr>
-                    </tbody>
-                </table>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics" class="tab-content">
+            <div class="tab-panel">
+                <div class="form-section">
+                    <h3>📊 Detailed Analytics</h3>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Game Impressions</h3>
+                            <div class="value">1,247</div>
+                            <div class="change">Last 30 days</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Email Subscriptions</h3>
+                            <div class="value">892</div>
+                            <div class="change">71.5% capture rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Games Played</h3>
+                            <div class="value">1,156</div>
+                            <div class="change">92.7% play rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Prizes Won</h3>
+                            <div class="value">847</div>
+                            <div class="change">73.3% win rate</div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>💰 Revenue Impact</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>Total Sales from Coupons</h3>
+                                <div class="value">$2,847</div>
+                                <div class="change">+23% from last month</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Average Order Value</h3>
+                                <div class="value">$45.20</div>
+                                <div class="change">+12% increase</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Conversion Rate</h3>
+                                <div class="value">71.5%</div>
+                                <div class="change">+5% from baseline</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>ROI</h3>
+                                <div class="value">284%</div>
+                                <div class="change">Excellent return</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Tab -->
+        <div id="customers" class="tab-content">
+            <div class="tab-panel">
+                <div class="form-section">
+                    <h3>👥 Customer Database</h3>
+                    <p style="color: #6d7175; margin-bottom: 16px;">Manage customers who have played the game and collected their information</p>
+                    
+                    <div style="background: white; border-radius: 8px; overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f6f6f7;">
+                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Name</th>
+                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Email</th>
+                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Prize Won</th>
+                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Date</th>
+                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e1e3e5;">
+                                    <td style="padding: 16px;">John Smith</td>
+                                    <td style="padding: 16px;">john@example.com</td>
+                                    <td style="padding: 16px;">10% OFF</td>
+                                    <td style="padding: 16px;">2024-01-15</td>
+                                    <td style="padding: 16px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Used</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e1e3e5;">
+                                    <td style="padding: 16px;">Sarah Johnson</td>
+                                    <td style="padding: 16px;">sarah@example.com</td>
+                                    <td style="padding: 16px;">Free Shipping</td>
+                                    <td style="padding: 16px;">2024-01-15</td>
+                                    <td style="padding: 16px;"><span style="background: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Pending</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e1e3e5;">
+                                    <td style="padding: 16px;">Mike Davis</td>
+                                    <td style="padding: 16px;">mike@example.com</td>
+                                    <td style="padding: 16px;">5% OFF</td>
+                                    <td style="padding: 16px;">2024-01-14</td>
+                                    <td style="padding: 16px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Used</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Spin Wheel Functionality
-        const wheel = document.getElementById('wheel');
-        const spinBtn = document.getElementById('spinBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const result = document.getElementById('result');
-        
-        const prizes = [
-            { label: '10% OFF', type: 'win', message: 'Congratulations! You won 10% off your order!' },
-            { label: 'Free Shipping', type: 'win', message: 'Great! Free shipping on your order!' },
-            { label: '5% OFF', type: 'win', message: 'Nice! You got 5% off!' },
-            { label: 'Try Again', type: 'lose', message: 'Better luck next time!' },
-            { label: '15% OFF', type: 'win', message: 'Amazing! 15% off your order!' },
-            { label: 'Free Gift', type: 'win', message: 'You won a free gift!' }
-        ];
-        
-        spinBtn.addEventListener('click', () => {
-            if (spinBtn.disabled) return;
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
             
-            spinBtn.disabled = true;
-            spinBtn.textContent = 'Spinning...';
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
             
-            // Random spin duration and angle
-            const spinDuration = 3000 + Math.random() * 2000;
-            const finalAngle = Math.random() * 360;
+            // Show selected tab panel
+            document.getElementById(tabName).querySelector('.tab-panel').classList.add('active');
             
-            wheel.style.transition = `transform ${spinDuration}ms ease-out`;
-            wheel.style.transform = `rotate(${finalAngle}deg)`;
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Prize management
+        function addPrize() {
+            const container = document.getElementById('prizesContainer');
+            const prizeCount = container.children.length + 1;
             
-            setTimeout(() => {
-                // Determine winner
-                const segmentAngle = 360 / prizes.length;
-                const winningIndex = Math.floor((360 - finalAngle) / segmentAngle) % prizes.length;
-                const winningPrize = prizes[winningIndex];
-                
-                result.innerHTML = `
-                    <div style="background: ${winningPrize.type === 'win' ? '#d1fae5' : '#fef3c7'}; padding: 20px; border-radius: 8px;">
-                        <h3 style="margin: 0 0 10px 0; color: ${winningPrize.type === 'win' ? '#065f46' : '#92400e'}">
-                            ${winningPrize.type === 'win' ? '🎉 Congratulations!' : '😔 Try Again!'}
-                        </h3>
-                        <p style="margin: 0; color: ${winningPrize.type === 'win' ? '#065f46' : '#92400e'}">
-                            ${winningPrize.message}
-                        </p>
+            const prizeItem = document.createElement('div');
+            prizeItem.className = 'prize-item';
+            prizeItem.innerHTML = `
+                <h4>Prize ${prizeCount}</h4>
+                <div class="prize-controls">
+                    <div class="form-group">
+                        <label>Prize Type</label>
+                        <select class="prize-type">
+                            <option value="discount">Discount Code</option>
+                            <option value="freeshipping">Free Shipping</option>
+                            <option value="freegift">Free Gift</option>
+                            <option value="nothing">No Prize</option>
+                        </select>
                     </div>
-                `;
-                result.style.display = 'block';
-                
-                spinBtn.style.display = 'none';
-                resetBtn.style.display = 'inline-block';
-            }, spinDuration);
-        });
-        
-        resetBtn.addEventListener('click', () => {
-            wheel.style.transition = 'transform 0.1s ease-out';
-            wheel.style.transform = 'rotate(0deg)';
-            result.style.display = 'none';
-            spinBtn.style.display = 'inline-block';
-            resetBtn.style.display = 'none';
-            spinBtn.disabled = false;
-            spinBtn.textContent = 'Spin the Wheel!';
+                    <div class="form-group">
+                        <label>Value</label>
+                        <input type="text" class="prize-value" placeholder="e.g., 10% OFF, $5 OFF">
+                    </div>
+                    <div class="form-group">
+                        <label>Win Probability (%)</label>
+                        <input type="number" class="prize-probability" value="20" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" onclick="removePrize(this)">Remove</button>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(prizeItem);
+        }
+
+        function removePrize(button) {
+            button.closest('.prize-item').remove();
+            updatePrizeNumbers();
+        }
+
+        function updatePrizeNumbers() {
+            const prizes = document.querySelectorAll('.prize-item');
+            prizes.forEach((prize, index) => {
+                prize.querySelector('h4').textContent = `Prize ${index + 1}`;
+            });
+        }
+
+        // Configuration preview
+        function updatePreview() {
+            const title = document.getElementById('gameTitle').value;
+            const description = document.getElementById('gameDescription').value;
+            const primaryColor = document.getElementById('primaryColor').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewDescription').textContent = description;
+            document.getElementById('previewButton').style.backgroundColor = primaryColor;
+            document.getElementById('previewWheel').style.background = `conic-gradient(from 0deg, ${primaryColor}, ${secondaryColor}, #45b7d1, #96ceb4, #feca57, #ff9ff3)`;
+            
+            // Update CSS variable for preview
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
+        }
+
+        // Save configuration
+        function saveConfiguration() {
+            // Collect all configuration data
+            const config = {
+                gameTitle: document.getElementById('gameTitle').value,
+                gameDescription: document.getElementById('gameDescription').value,
+                primaryColor: document.getElementById('primaryColor').value,
+                secondaryColor: document.getElementById('secondaryColor').value,
+                prizes: []
+            };
+            
+            // Collect prizes
+            document.querySelectorAll('.prize-item').forEach(prize => {
+                config.prizes.push({
+                    type: prize.querySelector('.prize-type').value,
+                    value: prize.querySelector('.prize-value').value,
+                    probability: prize.querySelector('.prize-probability').value
+                });
+            });
+            
+            // Save to localStorage (in real app, this would go to database)
+            localStorage.setItem('shopifyGamesConfig', JSON.stringify(config));
+            
+            alert('Configuration saved successfully!');
+        }
+
+        // Load configuration on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedConfig = localStorage.getItem('shopifyGamesConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                document.getElementById('gameTitle').value = config.gameTitle || 'Spin to Win!';
+                document.getElementById('gameDescription').value = config.gameDescription || 'Try your luck and win amazing discounts on your order!';
+                document.getElementById('primaryColor').value = config.primaryColor || '#008060';
+                document.getElementById('secondaryColor').value = config.secondaryColor || '#4ecdc4';
+                updatePreview();
+            }
+            
+            // Add event listeners for real-time preview
+            document.getElementById('gameTitle').addEventListener('input', updatePreview);
+            document.getElementById('gameDescription').addEventListener('input', updatePreview);
+            document.getElementById('primaryColor').addEventListener('input', updatePreview);
+            document.getElementById('secondaryColor').addEventListener('input', updatePreview);
         });
     </script>
 </body>
