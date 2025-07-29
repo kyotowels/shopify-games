@@ -14,191 +14,141 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #f6f6f7;
+            background: #1a1a1a;
             color: #202223;
+            height: 100vh;
+            overflow: hidden;
         }
         
         .app-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            background: white;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            color: #202223;
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        
-        .header p {
-            color: #6d7175;
-            font-size: 1rem;
-        }
-        
-        .nav-tabs {
             display: flex;
-            background: white;
-            border-radius: 8px 8px 0 0;
-            border-bottom: 1px solid #e1e3e5;
-            margin-bottom: 0;
+            height: 100vh;
         }
         
-        .nav-tab {
-            padding: 16px 24px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #6d7175;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #2d2d2d;
+            color: white;
+            padding: 20px 0;
+            overflow-y: auto;
         }
         
-        .nav-tab.active {
-            color: #008060;
-            border-bottom-color: #008060;
-        }
-        
-        .nav-tab:hover {
-            color: #202223;
-        }
-        
-        .tab-content {
-            background: white;
-            border-radius: 0 0 8px 8px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .tab-panel {
-            display: none;
-        }
-        
-        .tab-panel.active {
-            display: block;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 8px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-left: 4px solid #008060;
-        }
-        
-        .stat-card h3 {
-            color: #6d7175;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .stat-card .value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #202223;
-            margin-bottom: 8px;
-        }
-        
-        .stat-card .change {
-            font-size: 0.8rem;
-            color: #008060;
-            font-weight: 500;
-        }
-        
-        .form-section {
-            margin-bottom: 32px;
-        }
-        
-        .form-section h3 {
-            color: #202223;
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #e1e3e5;
-        }
-        
-        .form-group {
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #404040;
             margin-bottom: 20px;
         }
         
-        .form-group label {
-            display: block;
-            color: #202223;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #c9cccf;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: border-color 0.2s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #008060;
-            box-shadow: 0 0 0 1px #008060;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .prize-item {
-            background: #f6f6f7;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
-            border: 1px solid #e1e3e5;
-        }
-        
-        .prize-item h4 {
-            color: #202223;
-            margin-bottom: 8px;
-        }
-        
-        .prize-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .app-logo {
+            display: flex;
+            align-items: center;
             gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .app-logo .icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .app-logo h2 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 4px;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 0 20px 20px 0;
+            margin-right: 20px;
+        }
+        
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: #404040;
+            color: white;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            background: #f6f6f7;
+            overflow-y: auto;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: white;
+            border-bottom: 1px solid #e1e3e5;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #202223;
+        }
+        
+        .top-bar-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #008060;
+            font-size: 14px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #008060;
+            border-radius: 50%;
         }
         
         .btn {
-            padding: 12px 24px;
+            padding: 8px 16px;
             border: none;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .btn-primary {
@@ -219,355 +169,716 @@
             background: #5a5d60;
         }
         
-        .btn-danger {
-            background: #d82c0d;
+        .btn-outline {
+            background: transparent;
+            color: #008060;
+            border: 1px solid #008060;
+        }
+        
+        .btn-outline:hover {
+            background: #008060;
             color: white;
         }
         
-        .btn-danger:hover {
-            background: #b8250b;
-        }
-        
-        .color-picker {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        
-        .color-picker input[type="color"] {
-            width: 60px;
-            height: 40px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        
-        .preview-section {
-            background: #f6f6f7;
-            border-radius: 8px;
-            padding: 24px;
-            margin-top: 24px;
-        }
-        
-        .preview-section h4 {
-            color: #202223;
-            margin-bottom: 16px;
-        }
-        
-        .game-preview {
+        /* Setup Section */
+        .setup-section {
             background: white;
+            margin: 24px;
             border-radius: 8px;
-            padding: 24px;
-            text-align: center;
-            max-width: 400px;
-            margin: 0 auto;
+            border: 1px solid #e1e3e5;
         }
         
-        .game-preview .logo {
-            width: 80px;
-            height: 80px;
-            background: #e1e3e5;
-            border-radius: 8px;
-            margin: 0 auto 16px;
+        .setup-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e1e3e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .setup-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #202223;
+        }
+        
+        .setup-content {
+            padding: 24px;
+        }
+        
+        .setup-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .setup-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .setup-left {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #6d7175;
-            font-size: 0.8rem;
+            gap: 16px;
         }
         
-        .game-preview .wheel {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 16px;
-            background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+        .setup-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: white;
+            border-bottom: 1px solid #e1e3e5;
+            padding: 0 24px;
+        }
+        
+        .nav-tabs-container {
+            display: flex;
+            gap: 0;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #6d7175;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
             position: relative;
         }
         
-        .game-preview .wheel::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 16px solid #333;
+        .nav-tab.active {
+            color: #008060;
+            border-bottom-color: #008060;
         }
         
-        .game-preview .btn {
-            background: var(--primary-color, #008060);
-            color: white;
-            padding: 12px 24px;
-            border: none;
+        .nav-tab:hover {
+            color: #202223;
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            min-height: 600px;
+        }
+        
+        .tab-panel {
+            display: none;
+            padding: 24px;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        /* Form Elements */
+        .form-section {
+            margin-bottom: 32px;
+        }
+        
+        .form-section h3 {
+            color: #202223;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e1e3e5;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #202223;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #c9cccf;
             border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
+            font-size: 14px;
+            transition: border-color 0.2s;
         }
         
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #008060;
+            box-shadow: 0 0 0 1px #008060;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            margin-top: 12px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-top: 2px;
+        }
+        
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .checkbox-description {
+            color: #6d7175;
+            font-size: 12px;
+            margin-top: 4px;
+            margin-left: 24px;
+        }
+        
+        /* Popup Type Selection */
+        .popup-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .popup-type {
+            border: 2px solid #e1e3e5;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .popup-type.selected {
+            border-color: #008060;
+            background: #f0f9f6;
+        }
+        
+        .popup-type img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            background: #f6f6f7;
+        }
+        
+        .popup-type h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .popup-type p {
+            font-size: 12px;
+            color: #6d7175;
+        }
+        
+        /* Information Collection Tabs */
+        .info-tabs {
+            display: flex;
+            gap: 0;
+            margin-top: 16px;
+        }
+        
+        .info-tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border: none;
+            background: #f6f6f7;
+            color: #6d7175;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.2s;
+        }
+        
+        .info-tab.active {
+            background: #008060;
+            color: white;
+        }
+        
+        .info-tab:hover {
+            background: #e1e3e5;
+        }
+        
+        .info-tab.active:hover {
+            background: #008060;
+        }
+        
+        /* Trigger Options */
+        .trigger-options {
+            margin-top: 16px;
+        }
+        
+        .trigger-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+        
+        .trigger-option input[type="radio"] {
+            width: auto;
+        }
+        
+        .trigger-option label {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+        
+        .page-targets {
+            display: flex;
+            gap: 0;
+            margin-top: 16px;
+        }
+        
+        .page-target {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            background: #f6f6f7;
+            color: #6d7175;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .page-target.active {
+            background: #008060;
+            color: white;
+        }
+        
+        .page-target:hover {
+            background: #e1e3e5;
+        }
+        
+        .page-target.active:hover {
+            background: #008060;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #008060;
+        }
+        
+        .stat-card h3 {
+            color: #6d7175;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #202223;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .change {
+            font-size: 12px;
+            color: #008060;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
             .form-row {
                 grid-template-columns: 1fr;
             }
             
-            .prize-controls {
+            .popup-types {
                 grid-template-columns: 1fr;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .setup-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <div class="header">
-            <h1>🎮 Shopify Checkout Games</h1>
-            <p>Increase conversions with interactive games at checkout</p>
-        </div>
-
-        <!-- Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('dashboard')">Dashboard</button>
-            <button class="nav-tab" onclick="showTab('configuration')">Game Configuration</button>
-            <button class="nav-tab" onclick="showTab('analytics')">Analytics</button>
-            <button class="nav-tab" onclick="showTab('customers')">Customers</button>
-        </div>
-
-        <!-- Dashboard Tab -->
-        <div id="dashboard" class="tab-content">
-            <div class="tab-panel active">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Impressions</h3>
-                        <div class="value">1,247</div>
-                        <div class="change">+12% from last week</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Emails Collected</h3>
-                        <div class="value">892</div>
-                        <div class="change">+8% from last week</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Conversion Rate</h3>
-                        <div class="value">71.5%</div>
-                        <div class="change">+5% from last week</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Sales from Coupons</h3>
-                        <div class="value">$2,847</div>
-                        <div class="change">+23% from last week</div>
-                    </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <div class="icon">🎮</div>
+                    <h2>Checkout Games</h2>
                 </div>
-
-                <div class="form-section">
-                    <h3>Quick Actions</h3>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <button class="btn btn-primary" onclick="showTab('configuration')">Configure Game</button>
-                        <button class="btn btn-secondary" onclick="showTab('analytics')">View Analytics</button>
-                        <button class="btn btn-secondary" onclick="showTab('customers')">Manage Customers</button>
-                    </div>
-                </div>
+                <p style="color: #b0b0b0; font-size: 12px;">Interactive games for Shopify checkout</p>
             </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Send Emails</a></li>
+                <li><a href="#">Discounts</a></li>
+                <li><a href="#">Design & Colors</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Customers</a></li>
+            </ul>
         </div>
 
-        <!-- Configuration Tab -->
-        <div id="configuration" class="tab-content">
-            <div class="tab-panel">
-                <div class="form-section">
-                    <h3>🎯 Spin the Wheel Configuration</h3>
-                    
-                    <div class="form-group">
-                        <label>Game Title</label>
-                        <input type="text" id="gameTitle" value="Spin to Win!" placeholder="Enter game title">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Game Description</label>
-                        <textarea id="gameDescription" rows="3" placeholder="Enter game description">Try your luck and win amazing discounts on your order!</textarea>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Primary Color</label>
-                            <div class="color-picker">
-                                <input type="color" id="primaryColor" value="#008060">
-                                <span>Main button and accent color</span>
-                            </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-wrapper">
+                <!-- Top Bar -->
+                <div class="top-bar">
+                    <h1>EA • Spin Wheel Email Popups</h1>
+                    <div class="top-bar-actions">
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            <span>Popup is ON</span>
                         </div>
-                        <div class="form-group">
-                            <label>Secondary Color</label>
-                            <div class="color-picker">
-                                <input type="color" id="secondaryColor" value="#4ecdc4">
-                                <span>Wheel and background color</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Brand Logo</label>
-                        <input type="file" id="brandLogo" accept="image/*">
-                        <small style="color: #6d7175; margin-top: 4px; display: block;">Upload your brand logo (recommended: 200x200px)</small>
+                        <button class="btn btn-outline">Disable Popup</button>
+                        <button class="btn btn-primary">Preview</button>
                     </div>
                 </div>
 
-                <div class="form-section">
-                    <h3>🎁 Prize Configuration</h3>
-                    <p style="color: #6d7175; margin-bottom: 16px;">Configure up to 6 prizes with their win probabilities</p>
-                    
-                    <div id="prizesContainer">
-                        <div class="prize-item">
-                            <h4>Prize 1</h4>
-                            <div class="prize-controls">
-                                <div class="form-group">
-                                    <label>Prize Type</label>
-                                    <select class="prize-type">
-                                        <option value="discount">Discount Code</option>
-                                        <option value="freeshipping">Free Shipping</option>
-                                        <option value="freegift">Free Gift</option>
-                                        <option value="nothing">No Prize</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Value</label>
-                                    <input type="text" class="prize-value" placeholder="e.g., 10% OFF, $5 OFF">
-                                </div>
-                                <div class="form-group">
-                                    <label>Win Probability (%)</label>
-                                    <input type="number" class="prize-probability" value="20" min="0" max="100">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-danger" onclick="removePrize(this)">Remove</button>
+                <!-- Setup Section -->
+                <div class="setup-section">
+                    <div class="setup-header">
+                        <h2>Setup</h2>
+                    </div>
+                    <div class="setup-content">
+                        <div class="setup-row">
+                            <div class="setup-left">
+                                <button class="btn btn-secondary">Settings Language</button>
+                                <select style="padding: 8px 12px; border: 1px solid #c9cccf; border-radius: 4px;">
+                                    <option>Select Language</option>
+                                    <option>English</option>
+                                    <option>Spanish</option>
+                                    <option>French</option>
+                                </select>
+                            </div>
+                            <div class="setup-right">
+                                <div style="text-align: right;">
+                                    <div style="color: #008060; font-size: 14px; font-weight: 500;">App enabled (theme embed)</div>
+                                    <div style="color: #6d7175; font-size: 12px;">If 'Unlimited Plays' is disabled, the popup is hidden on future visits once a user has completed it. <a href="#" style="color: #008060;">Click here for a Store View preview</a>.</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <button class="btn btn-secondary" onclick="addPrize()">+ Add Prize</button>
-                </div>
-
-                <div class="preview-section">
-                    <h4>🎮 Game Preview</h4>
-                    <div class="game-preview">
-                        <div class="logo" id="previewLogo">LOGO</div>
-                        <h3 id="previewTitle">Spin to Win!</h3>
-                        <p id="previewDescription">Try your luck and win amazing discounts on your order!</p>
-                        <div class="wheel" id="previewWheel"></div>
-                        <button class="btn" id="previewButton">Spin the Wheel!</button>
-                    </div>
-                </div>
-
-                <div style="margin-top: 24px;">
-                    <button class="btn btn-primary" onclick="saveConfiguration()">Save Configuration</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Analytics Tab -->
-        <div id="analytics" class="tab-content">
-            <div class="tab-panel">
-                <div class="form-section">
-                    <h3>📊 Detailed Analytics</h3>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Game Impressions</h3>
-                            <div class="value">1,247</div>
-                            <div class="change">Last 30 days</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Email Subscriptions</h3>
-                            <div class="value">892</div>
-                            <div class="change">71.5% capture rate</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Games Played</h3>
-                            <div class="value">1,156</div>
-                            <div class="change">92.7% play rate</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Prizes Won</h3>
-                            <div class="value">847</div>
-                            <div class="change">73.3% win rate</div>
+                        
+                        <div class="setup-row">
+                            <div class="setup-left">
+                                <details style="cursor: pointer;">
+                                    <summary style="color: #202223; font-weight: 500;">Quick Start Guide</summary>
+                                    <div style="margin-top: 12px; color: #6d7175; font-size: 14px;">
+                                        <p>1. Configure your popup settings below</p>
+                                        <p>2. Set up your prizes and email template</p>
+                                        <p>3. Preview and test your popup</p>
+                                        <p>4. Enable the popup to go live</p>
+                                    </div>
+                                </details>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-section">
-                        <h3>💰 Revenue Impact</h3>
+                <!-- Navigation Tabs -->
+                <div class="nav-tabs">
+                    <div class="nav-tabs-container">
+                        <button class="nav-tab active" onclick="showTab('settings')">Settings</button>
+                        <button class="nav-tab" onclick="showTab('send-emails')">Send Emails</button>
+                        <button class="nav-tab" onclick="showTab('discounts')">Discounts</button>
+                        <button class="nav-tab" onclick="showTab('design')">Design, Colors & Text</button>
+                        <button class="nav-tab" onclick="showTab('tab')">Tab</button>
+                        <button class="nav-tab" onclick="showTab('countdown')">Countdown Banner</button>
+                        <button class="nav-tab" onclick="showTab('css')">CSS & JS</button>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Settings Tab -->
+                    <div id="settings" class="tab-panel active">
+                        <div class="form-section">
+                            <h3>Popup Type</h3>
+                            <div class="popup-types">
+                                <div class="popup-type selected" onclick="selectPopupType(this)">
+                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="text-align: center;">
+                                            <div style="width: 60px; height: 60px; background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); border-radius: 50%; margin: 0 auto 8px; position: relative;"></div>
+                                            <div style="width: 80px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
+                                        </div>
+                                    </div>
+                                    <h4>Spin Wheel</h4>
+                                    <p>Interactive spin wheel popup</p>
+                                </div>
+                                <div class="popup-type" onclick="selectPopupType(this)">
+                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="text-align: center;">
+                                            <div style="width: 80px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto 8px;"></div>
+                                            <div style="width: 60px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
+                                        </div>
+                                    </div>
+                                    <h4>Text</h4>
+                                    <p>Simple text-based popup</p>
+                                </div>
+                                <div class="popup-type" onclick="selectPopupType(this)">
+                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="text-align: center;">
+                                            <div style="width: 40px; height: 40px; background: #45b7d1; border-radius: 4px; margin: 0 auto 8px;"></div>
+                                            <div style="width: 60px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
+                                        </div>
+                                    </div>
+                                    <h4>Image & Text</h4>
+                                    <p>Popup with image and text</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="backgroundImage">
+                                    <label for="backgroundImage">Background Image</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Information to Collect</h3>
+                            <div class="info-tabs">
+                                <button class="info-tab active" onclick="selectInfoTab(this)">Email</button>
+                                <button class="info-tab" onclick="selectInfoTab(this)">SMS</button>
+                                <button class="info-tab" onclick="selectInfoTab(this)">Both</button>
+                                <button class="info-tab" onclick="selectInfoTab(this)">None</button>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="blockDisposable" checked>
+                                    <label for="blockDisposable">Block Temporary / Disposable Emails</label>
+                                </div>
+                                <div class="checkbox-description">Block most popular temporary / disposable email services.</div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="blockDuplicates">
+                                    <label for="blockDuplicates">Block Duplicate Emails / Phone Numbers</label>
+                                </div>
+                                <div class="checkbox-description">Block contacts who have already submitted the popup.</div>
+                            </div>
+                            
+                            <button class="btn btn-primary" style="margin-top: 16px;">+ Add Field</button>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Automatic Triggers & Visibility</h3>
+                            
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="unlimitedPlays" checked>
+                                    <label for="unlimitedPlays">Unlimited Plays: Allow customers to play again as often as the popup is shown, based on the settings below.</label>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <label style="font-weight: 500; margin-bottom: 12px; display: block;">Show Popup After Delay:</label>
+                                <div class="trigger-options">
+                                    <div class="trigger-option">
+                                        <input type="radio" name="trigger" id="everyPage">
+                                        <label for="everyPage">Once Every Page View</label>
+                                    </div>
+                                    <div class="trigger-option">
+                                        <input type="radio" name="trigger" id="timeBased">
+                                        <label for="timeBased">Once Per Hour/Day/Week/Month</label>
+                                    </div>
+                                    <div class="trigger-option">
+                                        <input type="radio" name="trigger" id="clickTab" checked>
+                                        <label for="clickTab">Only By Clicking Tab</label>
+                                    </div>
+                                    <div class="trigger-option">
+                                        <input type="radio" name="trigger" id="exitIntent">
+                                        <label for="exitIntent">On Exit Intent</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <label style="font-weight: 500; margin-bottom: 12px; display: block;">Show Popup On:</label>
+                                <div class="page-targets">
+                                    <button class="page-target active" onclick="selectPageTarget(this)">All Pages</button>
+                                    <button class="page-target" onclick="selectPageTarget(this)">Only Home Page</button>
+                                    <button class="page-target" onclick="selectPageTarget(this)">Only Specific Pages</button>
+                                    <button class="page-target" onclick="selectPageTarget(this)">All Pages Except</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Send Emails Tab -->
+                    <div id="send-emails" class="tab-panel">
+                        <div class="form-section">
+                            <h3>Email Configuration</h3>
+                            <p style="color: #6d7175; margin-bottom: 16px;">Configure how customers receive their prize codes via email</p>
+                            
+                            <div class="form-group">
+                                <label>Email Subject Line</label>
+                                <input type="text" value="🎉 You won a prize from [Store Name]!" placeholder="Enter email subject">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email Template</label>
+                                <textarea rows="8" placeholder="Enter email template">Hi there!
+
+Congratulations! You've won a prize from our spin wheel game!
+
+🎁 Your Prize: {PRIZE_VALUE}
+🎫 Coupon Code: {COUPON_CODE}
+
+Use this code at checkout to redeem your prize.
+
+Valid until: {EXPIRY_DATE}
+
+Thank you for playing!
+
+Best regards,
+[Store Name] Team</textarea>
+                                <small style="color: #6d7175; margin-top: 4px; display: block;">
+                                    Available variables: {PRIZE_VALUE}, {COUPON_CODE}, {EXPIRY_DATE}, {CUSTOMER_NAME}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Discounts Tab -->
+                    <div id="discounts" class="tab-panel">
+                        <div class="form-section">
+                            <h3>Prize Configuration</h3>
+                            <p style="color: #6d7175; margin-bottom: 16px;">Configure up to 6 prizes with their win probabilities</p>
+                            
+                            <div style="background: #f6f6f7; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                                <h4 style="margin-bottom: 12px;">Prize 1</h4>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                                    <div>
+                                        <label style="font-size: 12px; color: #6d7175;">Prize Type</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                            <option>Discount Code</option>
+                                            <option>Free Shipping</option>
+                                            <option>Free Gift</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 12px; color: #6d7175;">Value</label>
+                                        <input type="text" placeholder="e.g., 10% OFF" style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 12px; color: #6d7175;">Probability (%)</label>
+                                        <input type="number" value="20" min="0" max="100" style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-secondary">+ Add Prize</button>
+                        </div>
+                    </div>
+
+                    <!-- Design Tab -->
+                    <div id="design" class="tab-panel">
+                        <div class="form-section">
+                            <h3>Design & Colors</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Primary Color</label>
+                                    <input type="color" value="#008060" style="width: 60px; height: 40px; padding: 0;">
+                                </div>
+                                <div class="form-group">
+                                    <label>Secondary Color</label>
+                                    <input type="color" value="#4ecdc4" style="width: 60px; height: 40px; padding: 0;">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Brand Logo</label>
+                                <input type="file" accept="image/*">
+                                <small style="color: #6d7175; margin-top: 4px; display: block;">Upload your brand logo (recommended: 200x200px)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Tab -->
+                    <div id="analytics" class="tab-panel">
                         <div class="stats-grid">
                             <div class="stat-card">
-                                <h3>Total Sales from Coupons</h3>
-                                <div class="value">$2,847</div>
-                                <div class="change">+23% from last month</div>
+                                <h3>Total Impressions</h3>
+                                <div class="value">1,247</div>
+                                <div class="change">+12% from last week</div>
                             </div>
                             <div class="stat-card">
-                                <h3>Average Order Value</h3>
-                                <div class="value">$45.20</div>
-                                <div class="change">+12% increase</div>
+                                <h3>Emails Collected</h3>
+                                <div class="value">892</div>
+                                <div class="change">+8% from last week</div>
                             </div>
                             <div class="stat-card">
                                 <h3>Conversion Rate</h3>
                                 <div class="value">71.5%</div>
-                                <div class="change">+5% from baseline</div>
+                                <div class="change">+5% from last week</div>
                             </div>
                             <div class="stat-card">
-                                <h3>ROI</h3>
-                                <div class="value">284%</div>
-                                <div class="change">Excellent return</div>
+                                <h3>Sales from Coupons</h3>
+                                <div class="value">$2,847</div>
+                                <div class="change">+23% from last week</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Customers Tab -->
-        <div id="customers" class="tab-content">
-            <div class="tab-panel">
-                <div class="form-section">
-                    <h3>👥 Customer Database</h3>
-                    <p style="color: #6d7175; margin-bottom: 16px;">Manage customers who have played the game and collected their information</p>
+                    <!-- Other tabs -->
+                    <div id="tab" class="tab-panel">
+                        <p>Tab configuration settings will go here.</p>
+                    </div>
                     
-                    <div style="background: white; border-radius: 8px; overflow: hidden;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: #f6f6f7;">
-                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Name</th>
-                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Email</th>
-                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Prize Won</th>
-                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Date</th>
-                                    <th style="text-align: left; padding: 16px; color: #202223; font-weight: 500;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid #e1e3e5;">
-                                    <td style="padding: 16px;">John Smith</td>
-                                    <td style="padding: 16px;">john@example.com</td>
-                                    <td style="padding: 16px;">10% OFF</td>
-                                    <td style="padding: 16px;">2024-01-15</td>
-                                    <td style="padding: 16px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Used</span></td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #e1e3e5;">
-                                    <td style="padding: 16px;">Sarah Johnson</td>
-                                    <td style="padding: 16px;">sarah@example.com</td>
-                                    <td style="padding: 16px;">Free Shipping</td>
-                                    <td style="padding: 16px;">2024-01-15</td>
-                                    <td style="padding: 16px;"><span style="background: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Pending</span></td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #e1e3e5;">
-                                    <td style="padding: 16px;">Mike Davis</td>
-                                    <td style="padding: 16px;">mike@example.com</td>
-                                    <td style="padding: 16px;">5% OFF</td>
-                                    <td style="padding: 16px;">2024-01-14</td>
-                                    <td style="padding: 16px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">Used</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div id="countdown" class="tab-panel">
+                        <p>Countdown banner settings will go here.</p>
+                    </div>
+                    
+                    <div id="css" class="tab-panel">
+                        <p>CSS & JS customization settings will go here.</p>
                     </div>
                 </div>
             </div>
@@ -588,120 +899,35 @@
             });
             
             // Show selected tab panel
-            document.getElementById(tabName).querySelector('.tab-panel').classList.add('active');
+            document.getElementById(tabName).classList.add('active');
             
             // Add active class to clicked tab
             event.target.classList.add('active');
         }
 
-        // Prize management
-        function addPrize() {
-            const container = document.getElementById('prizesContainer');
-            const prizeCount = container.children.length + 1;
-            
-            const prizeItem = document.createElement('div');
-            prizeItem.className = 'prize-item';
-            prizeItem.innerHTML = `
-                <h4>Prize ${prizeCount}</h4>
-                <div class="prize-controls">
-                    <div class="form-group">
-                        <label>Prize Type</label>
-                        <select class="prize-type">
-                            <option value="discount">Discount Code</option>
-                            <option value="freeshipping">Free Shipping</option>
-                            <option value="freegift">Free Gift</option>
-                            <option value="nothing">No Prize</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Value</label>
-                        <input type="text" class="prize-value" placeholder="e.g., 10% OFF, $5 OFF">
-                    </div>
-                    <div class="form-group">
-                        <label>Win Probability (%)</label>
-                        <input type="number" class="prize-probability" value="20" min="0" max="100">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger" onclick="removePrize(this)">Remove</button>
-                    </div>
-                </div>
-            `;
-            
-            container.appendChild(prizeItem);
-        }
-
-        function removePrize(button) {
-            button.closest('.prize-item').remove();
-            updatePrizeNumbers();
-        }
-
-        function updatePrizeNumbers() {
-            const prizes = document.querySelectorAll('.prize-item');
-            prizes.forEach((prize, index) => {
-                prize.querySelector('h4').textContent = `Prize ${index + 1}`;
+        // Popup type selection
+        function selectPopupType(element) {
+            document.querySelectorAll('.popup-type').forEach(type => {
+                type.classList.remove('selected');
             });
+            element.classList.add('selected');
         }
 
-        // Configuration preview
-        function updatePreview() {
-            const title = document.getElementById('gameTitle').value;
-            const description = document.getElementById('gameDescription').value;
-            const primaryColor = document.getElementById('primaryColor').value;
-            const secondaryColor = document.getElementById('secondaryColor').value;
-            
-            document.getElementById('previewTitle').textContent = title;
-            document.getElementById('previewDescription').textContent = description;
-            document.getElementById('previewButton').style.backgroundColor = primaryColor;
-            document.getElementById('previewWheel').style.background = `conic-gradient(from 0deg, ${primaryColor}, ${secondaryColor}, #45b7d1, #96ceb4, #feca57, #ff9ff3)`;
-            
-            // Update CSS variable for preview
-            document.documentElement.style.setProperty('--primary-color', primaryColor);
-        }
-
-        // Save configuration
-        function saveConfiguration() {
-            // Collect all configuration data
-            const config = {
-                gameTitle: document.getElementById('gameTitle').value,
-                gameDescription: document.getElementById('gameDescription').value,
-                primaryColor: document.getElementById('primaryColor').value,
-                secondaryColor: document.getElementById('secondaryColor').value,
-                prizes: []
-            };
-            
-            // Collect prizes
-            document.querySelectorAll('.prize-item').forEach(prize => {
-                config.prizes.push({
-                    type: prize.querySelector('.prize-type').value,
-                    value: prize.querySelector('.prize-value').value,
-                    probability: prize.querySelector('.prize-probability').value
-                });
+        // Info tab selection
+        function selectInfoTab(element) {
+            document.querySelectorAll('.info-tab').forEach(tab => {
+                tab.classList.remove('active');
             });
-            
-            // Save to localStorage (in real app, this would go to database)
-            localStorage.setItem('shopifyGamesConfig', JSON.stringify(config));
-            
-            alert('Configuration saved successfully!');
+            element.classList.add('active');
         }
 
-        // Load configuration on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedConfig = localStorage.getItem('shopifyGamesConfig');
-            if (savedConfig) {
-                const config = JSON.parse(savedConfig);
-                document.getElementById('gameTitle').value = config.gameTitle || 'Spin to Win!';
-                document.getElementById('gameDescription').value = config.gameDescription || 'Try your luck and win amazing discounts on your order!';
-                document.getElementById('primaryColor').value = config.primaryColor || '#008060';
-                document.getElementById('secondaryColor').value = config.secondaryColor || '#4ecdc4';
-                updatePreview();
-            }
-            
-            // Add event listeners for real-time preview
-            document.getElementById('gameTitle').addEventListener('input', updatePreview);
-            document.getElementById('gameDescription').addEventListener('input', updatePreview);
-            document.getElementById('primaryColor').addEventListener('input', updatePreview);
-            document.getElementById('secondaryColor').addEventListener('input', updatePreview);
-        });
+        // Page target selection
+        function selectPageTarget(element) {
+            document.querySelectorAll('.page-target').forEach(target => {
+                target.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
     </script>
 </body>
 </html> 
