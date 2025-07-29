@@ -329,6 +329,31 @@
             gap: 20px;
         }
         
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .color-input-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .color-input-group input[type="color"] {
+            width: 60px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .color-input-group input[type="text"] {
+            flex: 1;
+        }
+        
         .checkbox-group {
             margin-top: 12px;
         }
@@ -358,129 +383,144 @@
             margin-left: 24px;
         }
         
-        /* Popup Type Selection */
-        .popup-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+        /* Game Preview */
+        .game-preview-container {
+            background: #f6f6f7;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 20px;
         }
         
-        .popup-type {
-            border: 2px solid #e1e3e5;
-            border-radius: 8px;
-            padding: 16px;
+        .game-preview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            color: white;
+        }
+        
+        .game-preview .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .game-preview-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .customer-image {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .wheel-section {
+            flex: 1;
             text-align: center;
         }
         
-        .popup-type.selected {
-            border-color: #008060;
-            background: #f0f9f6;
+        .wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            background: conic-gradient(from 0deg, 
+                #ff6b6b 0deg 30deg, 
+                #4ecdc4 30deg 60deg, 
+                #45b7d1 60deg 90deg, 
+                #96ceb4 90deg 120deg, 
+                #feca57 120deg 150deg, 
+                #ff9ff3 150deg 180deg,
+                #ff6b6b 180deg 210deg,
+                #4ecdc4 210deg 240deg,
+                #45b7d1 240deg 270deg,
+                #96ceb4 270deg 300deg,
+                #feca57 300deg 330deg,
+                #ff9ff3 330deg 360deg);
+            border: 8px solid white;
         }
         
-        .popup-type img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            background: #f6f6f7;
+        /* Remove the ::after arrow, keep only the ::before white arrow */
+        .wheel::after {
+            display: none;
+        }
+        .wheel::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            transform: translateY(-50%) rotate(-90deg);
+            width: 0;
+            height: 0;
+            border-left: 22px solid transparent;
+            border-right: 22px solid transparent;
+            border-top: 32px solid white;
+            z-index: 1;
         }
         
-        .popup-type h4 {
-            font-size: 14px;
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid #ddd;
+        }
+        
+        .wheel-text {
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 4px;
-        }
-        
-        .popup-type p {
-            font-size: 12px;
-            color: #6d7175;
-        }
-        
-        /* Information Collection Tabs */
-        .info-tabs {
-            display: flex;
-            gap: 0;
-            margin-top: 16px;
-        }
-        
-        .info-tab {
-            padding: 12px 20px;
-            cursor: pointer;
-            border: none;
-            background: #f6f6f7;
-            color: #6d7175;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 6px 6px 0 0;
-            transition: all 0.2s;
-        }
-        
-        .info-tab.active {
-            background: #008060;
-            color: white;
-        }
-        
-        .info-tab:hover {
-            background: #e1e3e5;
-        }
-        
-        .info-tab.active:hover {
-            background: #008060;
-        }
-        
-        /* Trigger Options */
-        .trigger-options {
-            margin-top: 16px;
-        }
-        
-        .trigger-option {
-            display: flex;
-            align-items: center;
             margin-bottom: 12px;
-            gap: 8px;
         }
         
-        .trigger-option input[type="radio"] {
-            width: auto;
+        .wheel-subtext {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 24px;
         }
         
-        .trigger-option label {
-            margin-bottom: 0;
+        .email-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 16px;
             font-size: 14px;
         }
         
-        .page-targets {
-            display: flex;
-            gap: 0;
-            margin-top: 16px;
-        }
-        
-        .page-target {
-            padding: 8px 16px;
-            cursor: pointer;
-            border: none;
-            background: #f6f6f7;
-            color: #6d7175;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .page-target.active {
-            background: #008060;
+        .spin-button {
+            width: 100%;
+            padding: 14px;
+            background: #000;
             color: white;
-        }
-        
-        .page-target:hover {
-            background: #e1e3e5;
-        }
-        
-        .page-target.active:hover {
-            background: #008060;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
         }
         
         /* Stats Grid */
@@ -527,11 +567,8 @@
                 width: 200px;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .popup-types {
+            .form-row,
+            .form-row-3 {
                 grid-template-columns: 1fr;
             }
             
@@ -539,6 +576,21 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 16px;
+            }
+            
+            .game-preview-content {
+                flex-direction: column;
+            }
+            
+            .customer-image {
+                width: 80px;
+                height: 80px;
+            }
+            
+            /* Stack configure and preview sections on mobile */
+            #game-settings > div {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
         }
     </style>
@@ -557,7 +609,7 @@
             
             <ul class="sidebar-nav">
                 <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="#">Game Settings</a></li>
                 <li><a href="#">Send Emails</a></li>
                 <li><a href="#">Discounts</a></li>
                 <li><a href="#">Design & Colors</a></li>
@@ -590,30 +642,18 @@
                     <div class="setup-content">
                         <div class="setup-row">
                             <div class="setup-left">
-                                <button class="btn btn-secondary">Settings Language</button>
-                                <select style="padding: 8px 12px; border: 1px solid #c9cccf; border-radius: 4px;">
-                                    <option>Select Language</option>
-                                    <option>English</option>
-                                    <option>Spanish</option>
-                                    <option>French</option>
-                                </select>
-                            </div>
-                            <div class="setup-right">
-                                <div style="text-align: right;">
+                                <div style="text-align: left;">
                                     <div style="color: #008060; font-size: 14px; font-weight: 500;">App enabled (theme embed)</div>
-                                    <div style="color: #6d7175; font-size: 12px;">If 'Unlimited Plays' is disabled, the popup is hidden on future visits once a user has completed it. <a href="#" style="color: #008060;">Click here for a Store View preview</a>.</div>
+                                    <div style="color: #6d7175; font-size: 12px;">Configure your spin wheel game settings below and preview how it will appear to customers.</div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="setup-row">
-                            <div class="setup-left">
+                            <div class="setup-right">
                                 <details style="cursor: pointer;">
                                     <summary style="color: #202223; font-weight: 500;">Quick Start Guide</summary>
                                     <div style="margin-top: 12px; color: #6d7175; font-size: 14px;">
-                                        <p>1. Configure your popup settings below</p>
-                                        <p>2. Set up your prizes and email template</p>
-                                        <p>3. Preview and test your popup</p>
+                                        <p>1. Configure your game settings below</p>
+                                        <p>2. Preview how it will look to customers</p>
+                                        <p>3. Set up prizes and email templates</p>
                                         <p>4. Enable the popup to go live</p>
                                     </div>
                                 </details>
@@ -625,7 +665,7 @@
                 <!-- Navigation Tabs -->
                 <div class="nav-tabs">
                     <div class="nav-tabs-container">
-                        <button class="nav-tab active" onclick="showTab('settings')">Settings</button>
+                        <button class="nav-tab active" onclick="showTab('game-settings')">Game Settings</button>
                         <button class="nav-tab" onclick="showTab('send-emails')">Send Emails</button>
                         <button class="nav-tab" onclick="showTab('discounts')">Discounts</button>
                         <button class="nav-tab" onclick="showTab('design')">Design, Colors & Text</button>
@@ -637,116 +677,132 @@
 
                 <!-- Tab Content -->
                 <div class="tab-content">
-                    <!-- Settings Tab -->
-                    <div id="settings" class="tab-panel active">
-                        <div class="form-section">
-                            <h3>Popup Type</h3>
-                            <div class="popup-types">
-                                <div class="popup-type selected" onclick="selectPopupType(this)">
-                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="text-align: center;">
-                                            <div style="width: 60px; height: 60px; background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); border-radius: 50%; margin: 0 auto 8px; position: relative;"></div>
-                                            <div style="width: 80px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
-                                        </div>
-                                    </div>
-                                    <h4>Spin Wheel</h4>
-                                    <p>Interactive spin wheel popup</p>
-                                </div>
-                                <div class="popup-type" onclick="selectPopupType(this)">
-                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="text-align: center;">
-                                            <div style="width: 80px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto 8px;"></div>
-                                            <div style="width: 60px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
-                                        </div>
-                                    </div>
-                                    <h4>Text</h4>
-                                    <p>Simple text-based popup</p>
-                                </div>
-                                <div class="popup-type" onclick="selectPopupType(this)">
-                                    <div style="background: #f6f6f7; height: 120px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="text-align: center;">
-                                            <div style="width: 40px; height: 40px; background: #45b7d1; border-radius: 4px; margin: 0 auto 8px;"></div>
-                                            <div style="width: 60px; height: 8px; background: #e1e3e5; border-radius: 4px; margin: 0 auto;"></div>
-                                        </div>
-                                    </div>
-                                    <h4>Image & Text</h4>
-                                    <p>Popup with image and text</p>
-                                </div>
-                            </div>
-                            
-                            <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="backgroundImage">
-                                    <label for="backgroundImage">Background Image</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3>Information to Collect</h3>
-                            <div class="info-tabs">
-                                <button class="info-tab active" onclick="selectInfoTab(this)">Email</button>
-                                <button class="info-tab" onclick="selectInfoTab(this)">SMS</button>
-                                <button class="info-tab" onclick="selectInfoTab(this)">Both</button>
-                                <button class="info-tab" onclick="selectInfoTab(this)">None</button>
-                            </div>
-                            
-                            <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="blockDisposable" checked>
-                                    <label for="blockDisposable">Block Temporary / Disposable Emails</label>
-                                </div>
-                                <div class="checkbox-description">Block most popular temporary / disposable email services.</div>
+                    <!-- Game Settings Tab -->
+                    <div id="game-settings" class="tab-panel active">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                            <!-- Configure Game Section -->
+                            <div class="form-section">
+                                <h3>Configure Game</h3>
                                 
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="blockDuplicates">
-                                    <label for="blockDuplicates">Block Duplicate Emails / Phone Numbers</label>
+                                <!-- Colors Configuration -->
+                                <div class="form-group">
+                                    <label>Wheel Colors (2 colors)</label>
+                                    <div class="form-row">
+                                        <div class="color-input-group">
+                                            <input type="color" id="wheelColor1" value="#ff6b6b" onchange="updateWheelPreview()">
+                                            <input type="text" id="wheelColor1Text" value="#ff6b6b" placeholder="Color code">
+                                        </div>
+                                        <div class="color-input-group">
+                                            <input type="color" id="wheelColor2" value="#4ecdc4" onchange="updateWheelPreview()">
+                                            <input type="text" id="wheelColor2Text" value="#4ecdc4" placeholder="Color code">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="checkbox-description">Block contacts who have already submitted the popup.</div>
-                            </div>
-                            
-                            <button class="btn btn-primary" style="margin-top: 16px;">+ Add Field</button>
-                        </div>
 
-                        <div class="form-section">
-                            <h3>Automatic Triggers & Visibility</h3>
-                            
-                            <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="unlimitedPlays" checked>
-                                    <label for="unlimitedPlays">Unlimited Plays: Allow customers to play again as often as the popup is shown, based on the settings below.</label>
-                                </div>
-                            </div>
-                            
-                            <div style="margin-top: 20px;">
-                                <label style="font-weight: 500; margin-bottom: 12px; display: block;">Show Popup After Delay:</label>
-                                <div class="trigger-options">
-                                    <div class="trigger-option">
-                                        <input type="radio" name="trigger" id="everyPage">
-                                        <label for="everyPage">Once Every Page View</label>
-                                    </div>
-                                    <div class="trigger-option">
-                                        <input type="radio" name="trigger" id="timeBased">
-                                        <label for="timeBased">Once Per Hour/Day/Week/Month</label>
-                                    </div>
-                                    <div class="trigger-option">
-                                        <input type="radio" name="trigger" id="clickTab" checked>
-                                        <label for="clickTab">Only By Clicking Tab</label>
-                                    </div>
-                                    <div class="trigger-option">
-                                        <input type="radio" name="trigger" id="exitIntent">
-                                        <label for="exitIntent">On Exit Intent</label>
+                                <div class="form-group">
+                                    <label>Background Color</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="bgColor" value="#667eea" onchange="updateGamePreview()">
+                                        <input type="text" id="bgColorText" value="#667eea" placeholder="Color code">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Spin Button Color</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="buttonColor" value="#000000" onchange="updateGamePreview()">
+                                        <input type="text" id="buttonColorText" value="#000000" placeholder="Color code">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Number of Wheel Sections</label>
+                                        <select id="wheelSections" onchange="updateWheelPreview()">
+                                            <option value="3">3 sections</option>
+                                            <option value="4">4 sections</option>
+                                            <option value="5">5 sections</option>
+                                            <option value="6" selected>6 sections</option>
+                                            <option value="7">7 sections</option>
+                                            <option value="8">8 sections</option>
+                                            <option value="9">9 sections</option>
+                                            <option value="10">10 sections</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Font Size</label>
+                                        <select id="fontSize" onchange="updateGamePreview()">
+                                            <option value="12">Small (12px)</option>
+                                            <option value="14" selected>Medium (14px)</option>
+                                            <option value="16">Large (16px)</option>
+                                            <option value="18">Extra Large (18px)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Font Type</label>
+                                    <select id="fontType" onchange="updateGamePreview()">
+                                        <option value="Arial, sans-serif">Arial</option>
+                                        <option value="'Times New Roman', serif">Times New Roman</option>
+                                        <option value="'Courier New', monospace">Courier New</option>
+                                        <option value="Georgia, serif">Georgia</option>
+                                        <option value="Verdana, sans-serif" selected>Verdana</option>
+                                        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Customer Image (displayed next to wheel)</label>
+                                    <input type="file" id="customerImage" accept="image/*" onchange="updateGamePreview()">
+                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload an image to display next to the wheel (recommended: 120x120px)</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Background Image (optional)</label>
+                                    <input type="file" id="bgImage" accept="image/*" onchange="updateGamePreview()">
+                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload a background image (will override background color)</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Logo</label>
+                                    <input type="file" id="logo" accept="image/*" onchange="updateGamePreview()">
+                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload your brand logo</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Logo Position</label>
+                                    <select id="logoPosition" onchange="updateGamePreview()">
+                                        <option value="above">Above the wheel</option>
+                                        <option value="middle" selected>In the middle of the wheel</option>
+                                        <option value="below">Below the spin button</option>
+                                    </select>
+                                </div>
                             </div>
-                            
-                            <div style="margin-top: 20px;">
-                                <label style="font-weight: 500; margin-bottom: 12px; display: block;">Show Popup On:</label>
-                                <div class="page-targets">
-                                    <button class="page-target active" onclick="selectPageTarget(this)">All Pages</button>
-                                    <button class="page-target" onclick="selectPageTarget(this)">Only Home Page</button>
-                                    <button class="page-target" onclick="selectPageTarget(this)">Only Specific Pages</button>
-                                    <button class="page-target" onclick="selectPageTarget(this)">All Pages Except</button>
+
+                            <!-- Preview Game Section -->
+                            <div class="form-section">
+                                <h3>Preview Game</h3>
+                                <p style="color: #6d7175; margin-bottom: 16px;">See how your spin wheel will appear to customers</p>
+                                
+                                <div class="game-preview-container">
+                                    <div class="game-preview" id="gamePreview">
+                                        <button class="close-btn">×</button>
+                                        <div class="game-preview-content">
+                                            <div class="customer-image" id="previewCustomerImage">
+                                                <div>Customer<br>Image</div>
+                                            </div>
+                                            <div class="wheel-section">
+                                                <div class="wheel" id="previewWheel">
+                                                    <div class="wheel-center"></div>
+                                                </div>
+                                                <div class="wheel-text">Take a spin for a chance to win discounts of up to 50%!</div>
+                                                <div class="wheel-subtext">Provide your email address for a chance to win a discount on your order.</div>
+                                                <input type="email" class="email-input" placeholder="Email address">
+                                                <button class="spin-button" id="previewSpinButton">Spin the Wheel</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -905,29 +961,77 @@ Best regards,
             event.target.classList.add('active');
         }
 
-        // Popup type selection
-        function selectPopupType(element) {
-            document.querySelectorAll('.popup-type').forEach(type => {
-                type.classList.remove('selected');
-            });
-            element.classList.add('selected');
+        // Update wheel preview
+        function updateWheelPreview() {
+            const color1 = document.getElementById('wheelColor1').value;
+            const color2 = document.getElementById('wheelColor2').value;
+            const sections = parseInt(document.getElementById('wheelSections').value);
+            
+            // Update color text inputs
+            document.getElementById('wheelColor1Text').value = color1;
+            document.getElementById('wheelColor2Text').value = color2;
+            
+            // Create gradient based on number of sections
+            let gradient = '';
+            const anglePerSection = 360 / sections;
+            
+            for (let i = 0; i < sections; i++) {
+                const startAngle = i * anglePerSection;
+                const endAngle = (i + 1) * anglePerSection;
+                const color = i % 2 === 0 ? color1 : color2; // Changed to 2 colors
+                gradient += `${color} ${startAngle}deg ${endAngle}deg`;
+                if (i < sections - 1) gradient += ', ';
+            }
+            
+            const wheel = document.getElementById('previewWheel');
+            wheel.style.background = `conic-gradient(from 0deg, ${gradient})`;
+            
+            // Update arrow color using CSS custom property
+            wheel.style.setProperty('--arrow-color', 'white'); // Set arrow color to white
         }
 
-        // Info tab selection
-        function selectInfoTab(element) {
-            document.querySelectorAll('.info-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            element.classList.add('active');
+        // Update game preview
+        function updateGamePreview() {
+            const bgColor = document.getElementById('bgColor').value;
+            const buttonColor = document.getElementById('buttonColor').value;
+            const fontSize = document.getElementById('fontSize').value;
+            const fontType = document.getElementById('fontType').value;
+            
+            // Update color text inputs
+            document.getElementById('bgColorText').value = bgColor;
+            document.getElementById('buttonColorText').value = buttonColor;
+            
+            const preview = document.getElementById('gamePreview');
+            const spinButton = document.getElementById('previewSpinButton');
+            
+            // Update background
+            preview.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
+            
+            // Update button color
+            spinButton.style.background = buttonColor;
+            
+            // Update font
+            preview.style.fontSize = fontSize + 'px';
+            preview.style.fontFamily = fontType;
         }
 
-        // Page target selection
-        function selectPageTarget(element) {
-            document.querySelectorAll('.page-target').forEach(target => {
-                target.classList.remove('active');
-            });
-            element.classList.add('active');
+        // Helper function to adjust color brightness
+        function adjustBrightness(hex, percent) {
+            const num = parseInt(hex.replace("#",""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
         }
+
+        // Initialize previews
+        document.addEventListener('DOMContentLoaded', function() {
+            updateWheelPreview();
+            updateGamePreview();
+        });
     </script>
 </body>
 </html> 
