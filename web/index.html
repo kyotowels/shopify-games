@@ -206,6 +206,38 @@
             border-color: #008060 !important;
         }
 
+        /* Image preview styles */
+        .image-preview {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #c9cccf;
+            border-radius: 4px;
+            margin-top: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #6d7175;
+            background-color: #f6f6f7;
+        }
+
+        .image-preview.has-image {
+            background-color: transparent;
+        }
+
+        .image-preview.has-image::after {
+            content: "✓ Image uploaded";
+            background: rgba(0, 128, 96, 0.9);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
         /* Halloween Pattern - Purple background with Halloween candy elements */
         .game-preview.halloween-pattern {
             background: 
@@ -527,8 +559,8 @@
         }
         
         .wheel {
-            width: 200px;
-            height: 200px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             margin: 0 auto 20px;
             position: relative;
@@ -840,6 +872,37 @@
                                     <small style="color: #6d7175; font-size: 11px; margin-top: 4px; display: block;">Upload a custom background pattern image</small>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Preset Background Images</label>
+                                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px;">
+                                        <div class="preset-image-upload">
+                                            <label style="font-size: 12px; color: #6d7175; margin-bottom: 4px; display: block;">Halloween</label>
+                                            <div style="display: flex; gap: 4px; align-items: center;">
+                                                <input type="file" id="halloween-bg" accept="image/*" onchange="handlePresetImageUpload('halloween')" style="flex: 1; font-size: 12px; padding: 4px; border: 1px solid #c9cccf; border-radius: 4px;">
+                                                <button type="button" onclick="clearPresetImage('halloween')" style="padding: 4px 8px; font-size: 10px; background: #f6f6f7; border: 1px solid #c9cccf; border-radius: 4px; cursor: pointer; white-space: nowrap;">Clear</button>
+                                            </div>
+                                            <div id="halloween-preview" class="image-preview"></div>
+                                        </div>
+                                        <div class="preset-image-upload">
+                                            <label style="font-size: 12px; color: #6d7175; margin-bottom: 4px; display: block;">Black Friday</label>
+                                            <div style="display: flex; gap: 4px; align-items: center;">
+                                                <input type="file" id="blackfriday-bg" accept="image/*" onchange="handlePresetImageUpload('blackfriday')" style="flex: 1; font-size: 12px; padding: 4px; border: 1px solid #c9cccf; border-radius: 4px;">
+                                                <button type="button" onclick="clearPresetImage('blackfriday')" style="padding: 4px 8px; font-size: 10px; background: #f6f6f7; border: 1px solid #c9cccf; border-radius: 4px; cursor: pointer; white-space: nowrap;">Clear</button>
+                                            </div>
+                                            <div id="blackfriday-preview" class="image-preview"></div>
+                                        </div>
+                                        <div class="preset-image-upload">
+                                            <label style="font-size: 12px; color: #6d7175; margin-bottom: 4px; display: block;">Christmas</label>
+                                            <div style="display: flex; gap: 4px; align-items: center;">
+                                                <input type="file" id="christmas-bg" accept="image/*" onchange="handlePresetImageUpload('christmas')" style="flex: 1; font-size: 12px; padding: 4px; border: 1px solid #c9cccf; border-radius: 4px;">
+                                                <button type="button" onclick="clearPresetImage('christmas')" style="padding: 4px 8px; font-size: 10px; background: #f6f6f7; border: 1px solid #c9cccf; border-radius: 4px; cursor: pointer; white-space: nowrap;">Clear</button>
+                                            </div>
+                                            <div id="christmas-preview" class="image-preview"></div>
+                                        </div>
+                                    </div>
+                                    <small style="color: #6d7175; font-size: 11px; margin-top: 8px; display: block;">Upload specific background images for each preset theme. These will override the CSS patterns.</small>
+                                </div>
+
                                 <div class="form-group" id="buttonColorGroup">
                                     <label>Spin Button Color</label>
                                     <div class="color-input-group">
@@ -867,6 +930,16 @@
                                         <option value="Georgia, serif">Georgia</option>
                                         <option value="Verdana, sans-serif" selected>Verdana</option>
                                         <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Wheel Size</label>
+                                    <select id="wheelSize" onchange="updateWheelSize()">
+                                        <option value="small">Small (200px)</option>
+                                        <option value="medium" selected>Medium (240px)</option>
+                                        <option value="large">Large (280px)</option>
+                                        <option value="xlarge">Extra Large (320px)</option>
                                     </select>
                                 </div>
 
@@ -932,7 +1005,7 @@
                         <!-- Prize Configuration Section -->
                         <div class="form-section" style="margin-top: 32px;">
                             <h3>Prize Configuration</h3>
-                            <p style="color: #6d7175; margin-bottom: 16px;">Configure prizes for your 12-segment wheel. Each prize can have multiple segments based on weight.</p>
+                                                            <p style="color: #6d7175; margin-bottom: 16px;">Configure prizes for your spin wheel. Each prize gets one visual segment, but winning probability is based on the weight you assign.</p>
                             
                             <!-- Prize Configuration Table -->
                             <div style="background: white; border: 1px solid #e1e3e5; border-radius: 8px; overflow: hidden;">
@@ -943,7 +1016,7 @@
                                             <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Discount Name</th>
                                             <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Discount Amount</th>
                                             <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Minimum Spend</th>
-                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Probability</th>
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Weight</th>
                                             <th style="padding: 12px 16px; text-align: center; font-size: 12px; font-weight: 600; color: #6d7175; width: 60px;">Actions</th>
                                         </tr>
                                     </thead>
@@ -972,7 +1045,7 @@
                                                 </div>
                                             </td>
                                             <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                                                <input type="number" id="segment-weight-1" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(1)" oninput="updateWeightPercentage(1)">
+                                                <input type="number" id="segment-weight-1" value="1" min="1" max="50" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(1)" oninput="updateWeightPercentage(1)">
                                             </td>
                                             <td style="padding: 12px 16px; text-align: center;">
                                                 <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(1)">×</button>
@@ -984,8 +1057,9 @@
                             
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
                                 <button class="btn btn-secondary" onclick="addPrize()">+ Add Discount</button>
+                                <button class="btn btn-secondary" onclick="forceAutoFillPrizes()" style="margin-left: 8px;">🎲 Auto-Fill Sample Prizes</button>
                                 <div style="font-size: 14px; color: #6d7175;">
-                                    Probability Total: <span id="probability-total">1</span>
+                                    Wheel Segments: <span id="probability-total">1</span> | Total Weight: <span id="total-weight">1</span>
                                 </div>
                             </div>
                             
@@ -1126,7 +1200,6 @@ Best regards,
         function updateWheelPreview() {
             const color1 = document.getElementById('wheelColor1').value;
             const color2 = document.getElementById('wheelColor2').value;
-            const sections = 12; // Fixed 12 sections for MVP
             
             // Update color text inputs
             document.getElementById('wheelColor1Text').value = color1;
@@ -1134,6 +1207,9 @@ Best regards,
             
             // Get all configured prizes
             const prizes = getConfiguredPrizes();
+            
+            // Use number of prizes for visual segments (not weights)
+            const sections = Math.max(prizes.length, 1); // One segment per prize
             
             // Create gradient and populate wheel segments
             let gradient = '';
@@ -1143,72 +1219,67 @@ Best regards,
             // Clear existing wheel content
             wheel.innerHTML = '<div class="wheel-center"></div>';
             
-            // Populate wheel with prizes
-            let currentSegment = 0;
+            // Populate wheel with one segment per prize (equal visual segments)
             prizes.forEach((prize, index) => {
-                for (let i = 0; i < prize.weight; i++) {
-                    if (currentSegment < sections) {
-                        const startAngle = currentSegment * anglePerSection;
-                        const endAngle = (currentSegment + 1) * anglePerSection;
-                        const color = currentSegment % 2 === 0 ? color1 : color2;
-                        gradient += `${color} ${startAngle}deg ${endAngle}deg`;
-                        if (currentSegment < sections - 1) gradient += ', ';
-                        
-                        // Add segment text
-                        const segmentText = document.createElement('div');
-                        segmentText.className = 'wheel-segment-text';
-                        segmentText.textContent = prize.name || 'No Prize';
-                        segmentText.style.cssText = `
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%) rotate(${startAngle + anglePerSection/2}deg) translateY(-60px) rotate(90deg);
-                            font-size: 10px;
-                            font-weight: 600;
-                            color: white;
-                            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-                            white-space: nowrap;
-                            max-width: 80px;
-                            text-align: center;
-                            line-height: 1.2;
-                        `;
-                        wheel.appendChild(segmentText);
-                        
-                        currentSegment++;
-                    }
-                }
-            });
-            
-            // Fill remaining segments with "No Prize"
-            while (currentSegment < sections) {
-                const startAngle = currentSegment * anglePerSection;
-                const endAngle = (currentSegment + 1) * anglePerSection;
-                const color = currentSegment % 2 === 0 ? color1 : color2;
+                const startAngle = index * anglePerSection;
+                const endAngle = (index + 1) * anglePerSection;
+                const color = index % 2 === 0 ? color1 : color2;
                 gradient += `${color} ${startAngle}deg ${endAngle}deg`;
-                if (currentSegment < sections - 1) gradient += ', ';
+                if (index < sections - 1) gradient += ', ';
                 
-                // Add "No Prize" text
-                const segmentText = document.createElement('div');
-                segmentText.className = 'wheel-segment-text';
-                segmentText.textContent = 'No Prize';
-                segmentText.style.cssText = `
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) rotate(${startAngle + anglePerSection/2}deg) translateY(-60px) rotate(90deg);
-                    font-size: 10px;
-                    font-weight: 600;
-                    color: white;
-                    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-                    white-space: nowrap;
-                    max-width: 80px;
-                    text-align: center;
-                    line-height: 1.2;
-                `;
-                wheel.appendChild(segmentText);
-                
-                currentSegment++;
-            }
+                                    // Add segment text with dynamic font sizing and smart truncation
+                    const segmentText = document.createElement('div');
+                    segmentText.className = 'wheel-segment-text';
+                    
+                    // Smart text truncation for wheel segments
+                    let displayText = prize.name || 'No Prize';
+                    const maxChars = sections <= 4 ? 20 : sections <= 6 ? 15 : sections <= 8 ? 12 : 10;
+                    
+                    if (displayText.length > maxChars) {
+                        // Try to truncate at word boundaries first
+                        const words = displayText.split(' ');
+                        let truncated = '';
+                        for (let word of words) {
+                            if ((truncated + word).length <= maxChars - 3) {
+                                truncated += (truncated ? ' ' : '') + word;
+                            } else {
+                                break;
+                            }
+                        }
+                        displayText = truncated + (truncated.length < displayText.length ? '...' : '');
+                    }
+                    
+                    segmentText.textContent = displayText;
+                    
+                    // Calculate dynamic font size based on text length
+                    const textLength = prize.name.length;
+                    let fontSize = 12;
+                    if (textLength > 15) fontSize = 8;
+                    else if (textLength > 12) fontSize = 9;
+                    else if (textLength > 8) fontSize = 10;
+                    else if (textLength > 5) fontSize = 11;
+                    
+                    // Adjust max-width based on number of segments
+                    const maxWidth = sections <= 4 ? 100 : sections <= 6 ? 80 : sections <= 8 ? 70 : 60;
+                    
+                    segmentText.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) rotate(${startAngle + anglePerSection/2}deg) translateY(-60px) rotate(90deg);
+                        font-size: ${fontSize}px;
+                        font-weight: 600;
+                        color: white;
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+                        white-space: nowrap;
+                        max-width: ${maxWidth}px;
+                        text-align: center;
+                        line-height: 1.2;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    `;
+                    wheel.appendChild(segmentText);
+            });
             
             wheel.style.background = `conic-gradient(from 0deg, ${gradient})`;
             
@@ -1240,6 +1311,25 @@ Best regards,
             });
             
             return prizes;
+        }
+
+        function updateWheelSize() {
+            const wheelSize = document.getElementById('wheelSize').value;
+            const wheel = document.getElementById('previewWheel');
+            
+            let size = 240; // default medium
+            switch(wheelSize) {
+                case 'small': size = 200; break;
+                case 'medium': size = 240; break;
+                case 'large': size = 280; break;
+                case 'xlarge': size = 320; break;
+            }
+            
+            wheel.style.width = size + 'px';
+            wheel.style.height = size + 'px';
+            
+            // Update wheel preview to recalculate text positioning
+            updateWheelPreview();
         }
 
         // Update game preview
@@ -1385,6 +1475,232 @@ Best regards,
             preview.style.backgroundRepeat = '';
         }
 
+        // Preset image upload functions
+        function handlePresetImageUpload(presetName) {
+            const fileInput = document.getElementById(`${presetName}-bg`);
+            const file = fileInput.files[0];
+            const preview = document.getElementById(`${presetName}-preview`);
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Update the preview thumbnail
+                    preview.style.backgroundImage = `url('${e.target.result}')`;
+                    preview.classList.add('has-image');
+                    
+                    // Store the image data for this preset
+                    localStorage.setItem(`preset-image-${presetName}`, e.target.result);
+                    
+                    // If this preset is currently selected, apply it to the game preview
+                    const selectedPreset = document.querySelector('.preset-option.selected');
+                    if (selectedPreset && selectedPreset.getAttribute('data-preset') === presetName) {
+                        applyPresetImageToPreview(presetName, e.target.result);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function applyPresetImageToPreview(presetName, imageData) {
+            const preview = document.getElementById('gamePreview');
+            
+            // Remove any preset pattern classes
+            preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+            
+            // Apply the uploaded image as background
+            preview.style.background = `url('${imageData}')`;
+            preview.style.backgroundSize = 'cover';
+            preview.style.backgroundPosition = 'center';
+            preview.style.backgroundRepeat = 'repeat';
+        }
+
+        function clearPresetImage(presetName) {
+            const fileInput = document.getElementById(`${presetName}-bg`);
+            const preview = document.getElementById(`${presetName}-preview`);
+            
+            // Clear the file input
+            fileInput.value = '';
+            
+            // Clear the preview
+            preview.style.backgroundImage = '';
+            preview.classList.remove('has-image');
+            
+            // Remove from localStorage
+            localStorage.removeItem(`preset-image-${presetName}`);
+            
+            // If this preset is currently selected, revert to CSS pattern
+            const selectedPreset = document.querySelector('.preset-option.selected');
+            if (selectedPreset && selectedPreset.getAttribute('data-preset') === presetName) {
+                const preview = document.getElementById('gamePreview');
+                preview.classList.add(presetName + '-pattern');
+                preview.style.background = '';
+                preview.style.backgroundImage = '';
+                preview.style.backgroundSize = '';
+                preview.style.backgroundPosition = '';
+                preview.style.backgroundRepeat = '';
+            }
+        }
+
+        function loadPresetImages() {
+            const presets = ['halloween', 'blackfriday', 'christmas'];
+            
+            presets.forEach(presetName => {
+                const savedImage = localStorage.getItem(`preset-image-${presetName}`);
+                if (savedImage) {
+                    const preview = document.getElementById(`${presetName}-preview`);
+                    if (preview) {
+                        preview.style.backgroundImage = `url('${savedImage}')`;
+                        preview.classList.add('has-image');
+                    }
+                }
+            });
+        }
+
+        // Auto-fill with realistic sample prizes
+        function autoFillSamplePrizes() {
+            // Check if there's already saved configuration
+            const savedPrizes = localStorage.getItem('shopify-checkout-games-prizes');
+            if (savedPrizes) {
+                try {
+                    const prizes = JSON.parse(savedPrizes);
+                    if (prizes && prizes.length > 1) {
+                        return; // Don't auto-fill if user has already configured multiple prizes
+                    }
+                } catch (e) {
+                    // If there's an error parsing, clear it and auto-fill
+                    localStorage.removeItem('shopify-checkout-games-prizes');
+                }
+            }
+
+            const samplePrizes = [
+                { name: "20% OFF", weight: 1, discount: 20, type: "percentage" },
+                { name: "15% OFF", weight: 2, discount: 15, type: "percentage" },
+                { name: "10% OFF", weight: 3, discount: 10, type: "percentage" },
+                { name: "Free Shipping", weight: 2, discount: 0, type: "freeshipping" },
+                { name: "$5 OFF", weight: 4, discount: 5, type: "fixed" },
+                { name: "5% OFF", weight: 5, discount: 5, type: "percentage" },
+                { name: "$3 OFF", weight: 3, discount: 3, type: "fixed" },
+                { name: "Better luck next time!", weight: 2, discount: 0, type: "none" }
+            ];
+
+            // Clear existing prizes (except the first one)
+            const existingRows = document.querySelectorAll('.prize-row');
+            existingRows.forEach((row, index) => {
+                if (index > 0) { // Keep the first row, remove others
+                    row.remove();
+                }
+            });
+
+            // Reset prize counter
+            prizeCounter = 1;
+
+            // Fill the first row with the first sample prize
+            const nameInput1 = document.getElementById('discount-name-1');
+            const weightInput1 = document.getElementById('segment-weight-1');
+            const typeSelect1 = document.getElementById('discount-type-1');
+            const amountInput1 = document.getElementById('discount-amount-1');
+
+            if (nameInput1 && weightInput1 && typeSelect1 && amountInput1) {
+                nameInput1.value = samplePrizes[0].name;
+                weightInput1.value = samplePrizes[0].weight;
+                typeSelect1.value = samplePrizes[0].type;
+                amountInput1.value = samplePrizes[0].discount;
+                updateDiscountDisplay(1);
+            }
+
+            // Add remaining sample prizes
+            for (let i = 1; i < samplePrizes.length; i++) {
+                addPrize();
+                const prize = samplePrizes[i];
+                
+                const nameInput = document.getElementById(`discount-name-${prizeCounter}`);
+                const weightInput = document.getElementById(`segment-weight-${prizeCounter}`);
+                const typeSelect = document.getElementById(`discount-type-${prizeCounter}`);
+                const amountInput = document.getElementById(`discount-amount-${prizeCounter}`);
+
+                if (nameInput && weightInput && typeSelect && amountInput) {
+                    nameInput.value = prize.name;
+                    weightInput.value = prize.weight;
+                    typeSelect.value = prize.type;
+                    amountInput.value = prize.discount;
+                    updateDiscountDisplay(prizeCounter);
+                }
+            }
+
+            // Update displays
+            updateProbabilityTotal();
+            updateWheelPreview();
+
+            console.log('Auto-filled with sample prizes:', samplePrizes);
+        }
+
+        // Force auto-fill function (manual trigger)
+        function forceAutoFillPrizes() {
+            // Clear any existing saved configuration
+            localStorage.removeItem('shopify-checkout-games-prizes');
+            
+            // Clear existing prizes (except the first one)
+            const existingRows = document.querySelectorAll('.prize-row');
+            existingRows.forEach((row, index) => {
+                if (index > 0) { // Keep the first row, remove others
+                    row.remove();
+                }
+            });
+
+            // Reset prize counter
+            prizeCounter = 1;
+
+            const samplePrizes = [
+                { name: "20% OFF", weight: 1, discount: 20, type: "percentage" },
+                { name: "15% OFF", weight: 2, discount: 15, type: "percentage" },
+                { name: "10% OFF", weight: 3, discount: 10, type: "percentage" },
+                { name: "Free Shipping", weight: 2, discount: 0, type: "freeshipping" },
+                { name: "$5 OFF", weight: 4, discount: 5, type: "fixed" },
+                { name: "5% OFF", weight: 5, discount: 5, type: "percentage" },
+                { name: "$3 OFF", weight: 3, discount: 3, type: "fixed" },
+                { name: "Better luck next time!", weight: 2, discount: 0, type: "none" }
+            ];
+
+            // Fill the first row with the first sample prize
+            const nameInput1 = document.getElementById('discount-name-1');
+            const weightInput1 = document.getElementById('segment-weight-1');
+            const typeSelect1 = document.getElementById('discount-type-1');
+            const amountInput1 = document.getElementById('discount-amount-1');
+
+            if (nameInput1 && weightInput1 && typeSelect1 && amountInput1) {
+                nameInput1.value = samplePrizes[0].name;
+                weightInput1.value = samplePrizes[0].weight;
+                typeSelect1.value = samplePrizes[0].type;
+                amountInput1.value = samplePrizes[0].discount;
+                updateDiscountDisplay(1);
+            }
+
+            // Add remaining sample prizes
+            for (let i = 1; i < samplePrizes.length; i++) {
+                addPrize();
+                const prize = samplePrizes[i];
+                
+                const nameInput = document.getElementById(`discount-name-${prizeCounter}`);
+                const weightInput = document.getElementById(`segment-weight-${prizeCounter}`);
+                const typeSelect = document.getElementById(`discount-type-${prizeCounter}`);
+                const amountInput = document.getElementById(`discount-amount-${prizeCounter}`);
+
+                if (nameInput && weightInput && typeSelect && amountInput) {
+                    nameInput.value = prize.name;
+                    weightInput.value = prize.weight;
+                    typeSelect.value = prize.type;
+                    amountInput.value = prize.discount;
+                    updateDiscountDisplay(prizeCounter);
+                }
+            }
+
+            // Update displays
+            updateProbabilityTotal();
+            updateWheelPreview();
+
+            console.log('Force auto-filled with sample prizes:', samplePrizes);
+        }
+
         // Prize configuration functions
         let prizeCounter = 1;
 
@@ -1420,7 +1736,7 @@ Best regards,
                     </div>
                 </td>
                 <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                    <input type="number" id="segment-weight-${prizeCounter}" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(${prizeCounter})" oninput="updateWeightPercentage(${prizeCounter})">
+                                            <input type="number" id="segment-weight-${prizeCounter}" value="1" min="1" max="50" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(${prizeCounter})" oninput="updateWeightPercentage(${prizeCounter})">
                 </td>
                 <td style="padding: 12px 16px; text-align: center;">
                     <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(${prizeCounter})">×</button>
@@ -1457,19 +1773,42 @@ Best regards,
         }
 
         function updateWeightPercentage(prizeId) {
+            const weightInput = document.getElementById(`segment-weight-${prizeId}`);
+            const percentageSpan = document.getElementById(`percentage-${prizeId}`);
+            const weight = parseInt(weightInput.value) || 0;
+            
+            // Calculate total weight from all prizes
+            const allWeightInputs = document.querySelectorAll('[id^="segment-weight-"]');
+            let totalWeight = 0;
+            allWeightInputs.forEach(input => {
+                totalWeight += parseInt(input.value) || 0;
+            });
+            
+            // Calculate percentage based on actual total weight
+            const percentage = totalWeight > 0 ? ((weight / totalWeight) * 100).toFixed(1) : 0;
+            
+            if (percentageSpan) {
+                percentageSpan.textContent = `${percentage}%`;
+            }
+            
             updateProbabilityTotal();
             updateWheelPreview();
         }
 
         function updateProbabilityTotal() {
             const weightInputs = document.querySelectorAll('[id^="segment-weight-"]');
-            let total = 0;
+            let totalWeight = 0;
             
             weightInputs.forEach(input => {
-                total += parseInt(input.value) || 0;
+                totalWeight += parseInt(input.value) || 0;
             });
             
-            document.getElementById('probability-total').textContent = total;
+            // Get number of prizes (segments)
+            const prizes = getConfiguredPrizes();
+            const segments = prizes.length;
+            
+            document.getElementById('probability-total').textContent = segments;
+            document.getElementById('total-weight').textContent = totalWeight;
         }
 
         // Save prize configuration
@@ -1487,8 +1826,8 @@ Best regards,
             }
             
             const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
-            if (totalWeight > 12) {
-                saveStatus.innerHTML = '<span style="color: #d82c0d;">⚠️ Total segment weight cannot exceed 12</span>';
+            if (totalWeight === 0) {
+                saveStatus.innerHTML = '<span style="color: #d82c0d;">⚠️ Please add at least one prize with a weight greater than 0</span>';
                 return;
             }
             
@@ -1671,6 +2010,23 @@ Best regards,
                 document.getElementById('campaignHeader').value = colors.text;
             }
             
+            // Check if there's an uploaded image for this preset
+            const savedImage = localStorage.getItem(`preset-image-${presetName}`);
+            if (savedImage) {
+                // Apply the uploaded image instead of CSS pattern
+                applyPresetImageToPreview(presetName, savedImage);
+            } else {
+                // Apply CSS pattern as fallback
+                const preview = document.getElementById('gamePreview');
+                preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+                preview.classList.add(presetName + '-pattern');
+                preview.style.background = '';
+                preview.style.backgroundImage = '';
+                preview.style.backgroundSize = '';
+                preview.style.backgroundPosition = '';
+                preview.style.backgroundRepeat = '';
+            }
+            
             // Update wheel preview
             updateWheelPreview();
             updateGamePreview();
@@ -1689,6 +2045,12 @@ Best regards,
             
             // Load saved prize configuration if available
             loadSavedPrizeConfiguration();
+            
+            // Load saved preset images if available
+            loadPresetImages();
+            
+            // Auto-fill with sample prizes if no saved configuration exists
+            autoFillSamplePrizes();
             
             // Add event listeners for color text inputs
             document.getElementById('headerColorText').addEventListener('input', function() {

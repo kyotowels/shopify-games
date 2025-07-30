@@ -1,0 +1,9 @@
+{
+  "name": "admin-dashboard",
+  "version": "1.0.0",
+  "main": "src/index.jsx",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@shopify/admin-ui-extensions-react": "^1.0.0"
+  }
+} 

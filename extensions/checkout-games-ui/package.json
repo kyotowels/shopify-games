@@ -1,0 +1,9 @@
+{
+  "name": "checkout-games-ui",
+  "version": "1.0.0",
+  "main": "src/index.jsx",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@shopify/checkout-ui-extensions-react": "^1.0.0"
+  }
+} 

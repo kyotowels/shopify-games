@@ -1,13 +1,13 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 name = "Checkout Games"
-client_id = "YOUR_CLIENT_ID"
+client_id = "YOUR_CLIENT_ID_HERE"
 application_url = "https://your-app-url.com"
 embedded = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,write_orders,write_customers,write_discounts,write_marketing_events"
+scopes = "write_products,write_orders,write_customers,write_discounts,write_marketing_events,read_orders,read_customers"
 
 [auth]
 redirect_urls = [
@@ -17,7 +17,7 @@ redirect_urls = [
 ]
 
 [webhooks]
-api_version = "2023-10"
+api_version = "2024-01"
 
 [pos]
 embedded = false
