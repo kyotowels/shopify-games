@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopify Checkout Games - Merchant Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@10.0.0/build/esm/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Creepster" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Impact" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas" />
     <style>
         * {
             margin: 0;
@@ -202,6 +205,68 @@
         .preset-option.selected .preset-preview {
             border-color: #008060 !important;
         }
+
+        /* Halloween Pattern - Purple background with Halloween candy elements */
+        .game-preview.halloween-pattern {
+            background: 
+                /* Halloween candy pattern image - more detailed version */
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIxMDAwIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjNEIwMDgyIi8+CjwhLS0gSmFjay1vJy1sYW50ZXJuIExvbGxpcG9wcyAtLT4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjUwIiByPSI0MCIgZmlsbD0iI0ZGNzgwMDAiLz4KPGNpcmNsZSBjeD0iMTQwIiBjeT0iMjQwIiByPSI4IiBmaWxsPSIjMDAwMDAwIi8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjI0MCIgcj0iOCIgZmlsbD0iIzAwMDAwMCIvPgo8cGF0aCBkPSJNMTQwIDI2MEwxNjAgMjYwTDE1MCAyNzBaIiBmaWxsPSIjMDAwMDAwIi8+CjxjaXJjbGUgY3g9Ijg1MCIgY3k9Ijc1MCIgcj0iNDAiIGZpbGw9IiNGRjc4MDAwIi8+CjxjaXJjbGUgY3g9Ijg0MCIgY3k9Ijc0MCIgcj0iOCIgZmlsbD0iIzAwMDAwMCIvPgo8Y2lyY2xlIGN4PSI4NjAiIGN5PSI3NDAiIHI9IjgiIGZpbGw9IiMwMDAwMDAiLz4KPHA+PHNwYW4+PC9zcGFuPjwvcD4KPCEtLSBXcmFwcGVkIENhbmRpZXMgLS0+CjxlbGxpcHNlIGN4PSIyNTAiIGN5PSIzNTAiIHJ4PSI0MCIgcnk9IjIwIiBmaWxsPSIjRkZGRkZGIi8+CjxlbGxpcHNlIGN4PSIyNTAiIGN5PSIzNTAiIHJ4PSIzMCIgcnk9IjE1IiBmaWxsPSIjRkY3ODAwMCIvPgo8ZWxsaXBzZSBjeD0iNzUwIiBjeT0iNjUwIiByeD0iNDAiIHJ5PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPgo8ZWxsaXBzZSBjeD0iNzUwIiBjeT0iNjUwIiByeD0iMzAiIHJ5PSIxNSIgZmlsbD0iI0ZGNzgwMDAiLz4KPCEtLSBTd2lybCBDYW5kaWVzIC0tPgo8Y2lyY2xlIGN4PSIzNTAiIGN5PSIxNTAiIHI9IjMwIiBmaWxsPSIjRkY3ODAwMCIvPgo8Y2lyY2xlIGN4PSIzNTAiIGN5PSIxNTAiIHI9IjE1IiBmaWxsPSIjRkZGRkZGIi8+CjxjaXJjbGUgY3g9IjY1MCIgY3k9Ijg1MCIgcj0iMzAiIGZpbGw9IiM5MEVFRkYiLz4KPGNpcmNsZSBjeD0iNjUwIiBjeT0iODUwIiByPSIxNSIgZmlsbD0iI0ZGRkZGRiIvPgo8IS0tIEZyaWVuZGx5IEdob3N0IC0tPgo8ZWxsaXBzZSBjeD0iNTAwIiBjeT0iNTAwIiByeD0iNjAiIHJ5PSI4MCIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSI0ODAiIGN5PSI0ODAiIHI9IjEyIiBmaWxsPSIjMDAwMDAwIi8+CjxjaXJjbGUgY3g9IjUyMCIgY3k9IjQ4MCIgcj0iMTIiIGZpbGw9IiMwMDAwMDAiLz4KPHA+PHNwYW4+PC9zcGFuPjwvcD4KPCEtLSBTa3VsbHMgaW4gVmVpbHMgLS0+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSI4MDAiIHJ4PSI0MCIgcnk9IjYwIiBmaWxsPSIjOTBFRUZGIi8+CjxjaXJjbGUgY3g9IjE4MCIgY3k9Ijc4MCIgcj0iMTYiIGZpbGw9IiM0QjAwODIiLz4KPGNpcmNsZSBjeD0iMjIwIiBjeT0iNzgwIiByPSIxNiIgZmlsbD0iIzRCMDA4MiIvPgo8ZWxsaXBzZSBjeD0iODAwIiBjeT0iMjAwIiByeD0iNDAiIHJ5PSI2MCIgZmlsbD0iIzkwRUVGRiIvPgo8Y2lyY2xlIGN4PSI3ODAiIGN5PSIxODAiIHI9IjE2IiBmaWxsPSIjNEIwMDgyIi8+CjxjaXJjbGUgY3g9IjgyMCIgY3k9IjE4MCIgcj0iMTYiIGZpbGw9IiM0QjAwODIiLz4KPCEtLSBBZGRpdGlvbmFsIGVsZW1lbnRzIC0tPgo8Y2lyY2xlIGN4PSIxMDAiIGN5PSI2MDAiIHI9IjIwIiBmaWxsPSIjRkY3ODAwMCIvPgo8Y2lyY2xlIGN4PSI5MDAiIGN5PSI0MDAiIHI9IjE1IiBmaWxsPSIjRkZGRkZGIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjkwMCIgcj0iMTgiIGZpbGw9IiM5MEVFRkYiLz4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iMTAwIiByPSIxMiIgZmlsbD0iI0ZGNzgwMDAiLz4KPGNpcmNsZSBjeD0iMzAwIiBjeT0iNzAwIiByPSIxOCIgZmlsbD0iI0ZGNzgwMDAiLz4KPGNpcmNsZSBjeD0iNzAwIiBjeT0iMzAwIiByPSIxNiIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSIxNTAgY3k9IjQwMCIgcj0iMTQiIGZpbGw9IiM5MEVFRkYiLz4KPGNpcmNsZSBjeD0iODUwIiBjeT0iNjAwIiByPSIxNiIgZmlsbD0iI0ZGNzgwMDAiLz4KPC9zdmc+'),
+                #4B0082 !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: repeat !important;
+        }
+
+        /* Christmas Pattern - Snowflake pattern with new colors */
+        .game-preview.christmas-pattern {
+            background: 
+                /* Snowflakes using multiple small circles */
+                radial-gradient(circle 2px at 20% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+                radial-gradient(circle 1px at 25% 22%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 1px at 18% 18%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 2px at 80% 80%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+                radial-gradient(circle 1px at 85% 82%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 1px at 78% 78%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 2px at 50% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 50%),
+                radial-gradient(circle 1px at 55% 12%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                radial-gradient(circle 1px at 48% 8%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                /* Christmas red accents */
+                radial-gradient(circle 6px at 30% 70%, rgba(204, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle 4px at 70% 30%, rgba(204, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle 5px at 90% 60%, rgba(204, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle 3px at 10% 40%, rgba(204, 0, 0, 0.2) 0%, transparent 50%),
+                /* Christmas green accents */
+                radial-gradient(circle 4px at 35% 65%, rgba(0, 100, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle 3px at 65% 35%, rgba(0, 100, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle 4px at 85% 55%, rgba(0, 100, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle 2px at 15% 45%, rgba(0, 100, 0, 0.2) 0%, transparent 50%),
+                #000000 !important;
+        }
+
+
+
+        /* Black Friday Pattern - Sale stripe pattern with new colors */
+        .game-preview.blackFriday-pattern {
+            background: 
+                /* Sale stripes using diagonal lines */
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 0, 0, 0.3) 20px, rgba(255, 0, 0, 0.3) 22px),
+                repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.3) 20px, rgba(255, 215, 0, 0.3) 22px),
+                /* Sale tags using rectangles */
+                radial-gradient(ellipse 12px 6px at 25% 25%, rgba(255, 0, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 10px 5px at 75% 75%, rgba(255, 215, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 8px 4px at 50% 10%, rgba(255, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 9px 5px at 10% 50%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 7px 3px at 90% 50%, rgba(255, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse 6px 4px at 50% 90%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+                /* Discount symbols */
+                radial-gradient(circle 4px at 35% 65%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 3px at 65% 35%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(circle 4px at 15% 85%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                radial-gradient(circle 3px at 85% 15%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                #000000 !important;
+        }
+
+
         
         /* Setup Section */
         .setup-section {
@@ -415,7 +480,7 @@
         }
         
         .game-preview {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Default fallback */
             border-radius: 12px;
             padding: 32px;
             max-width: 600px;
@@ -727,29 +792,17 @@
                                     <div id="presetColors" class="form-group">
                                         <label style="font-size: 12px; color: #6d7175; margin-bottom: 8px; display: block;">Choose a preset color scheme:</label>
                                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                                            <div class="preset-option" onclick="selectPreset('sunset')" data-preset="sunset">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #ff6b6b, #feca57); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Sunset</span>
+                                            <div class="preset-option" onclick="selectPreset('halloween')" data-preset="halloween">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #F28C38, #4B0082); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Halloween</span>
                                             </div>
-                                            <div class="preset-option" onclick="selectPreset('ocean')" data-preset="ocean">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #4ecdc4, #44a08d); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Ocean</span>
+                                            <div class="preset-option" onclick="selectPreset('blackFriday')" data-preset="blackFriday">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #FF0000, #FFD700); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Black Friday</span>
                                             </div>
-                                            <div class="preset-option" onclick="selectPreset('forest')" data-preset="forest">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #2ecc71, #27ae60); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Forest</span>
-                                            </div>
-                                            <div class="preset-option" onclick="selectPreset('berry')" data-preset="berry">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #9b59b6, #8e44ad); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Berry</span>
-                                            </div>
-                                            <div class="preset-option" onclick="selectPreset('fire')" data-preset="fire">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #e74c3c, #c0392b); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Fire</span>
-                                            </div>
-                                            <div class="preset-option" onclick="selectPreset('gold')" data-preset="gold">
-                                                <div class="preset-preview" style="background: linear-gradient(45deg, #f1c40f, #f39c12); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
-                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Gold</span>
+                                            <div class="preset-option" onclick="selectPreset('christmas')" data-preset="christmas">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #CC0000, #006400); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Christmas</span>
                                             </div>
                                         </div>
                                     </div>
@@ -776,6 +829,15 @@
                                         <input type="color" id="bgColor" value="#667eea" onchange="updateGamePreview()">
                                         <input type="text" id="bgColorText" value="#667eea" placeholder="Color code">
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Background Pattern Image (Optional)</label>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="file" id="bgPatternImage" accept="image/*" onchange="handleBackgroundImageUpload()" style="flex: 1; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                        <button type="button" onclick="clearBackgroundImage()" style="padding: 6px 12px; font-size: 12px; background: #f6f6f7; border: 1px solid #c9cccf; border-radius: 4px; cursor: pointer;">Clear</button>
+                                    </div>
+                                    <small style="color: #6d7175; font-size: 11px; margin-top: 4px; display: block;">Upload a custom background pattern image</small>
                                 </div>
 
                                 <div class="form-group" id="buttonColorGroup">
@@ -895,7 +957,7 @@
                                                 </select>
                                             </td>
                                             <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                                                <input type="text" id="discount-name-1" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()">
+                                                <input type="text" id="discount-name-1" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()" oninput="updateWheelPreview()">
                                             </td>
                                             <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
                                                 <div style="display: flex; align-items: center; gap: 4px;">
@@ -910,7 +972,7 @@
                                                 </div>
                                             </td>
                                             <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                                                <input type="number" id="segment-weight-1" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(1)">
+                                                <input type="number" id="segment-weight-1" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(1)" oninput="updateWeightPercentage(1)">
                                             </td>
                                             <td style="padding: 12px 16px; text-align: center;">
                                                 <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(1)">×</button>
@@ -926,6 +988,14 @@
                                     Probability Total: <span id="probability-total">1</span>
                                 </div>
                             </div>
+                            
+                            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                                <button class="btn btn-primary" onclick="savePrizeConfiguration()" style="padding: 12px 24px; font-size: 16px; font-weight: 600;">
+                                    💾 Save Prize Configuration
+                                </button>
+                            </div>
+                            
+                            <div id="save-status" style="text-align: center; margin-top: 12px; font-size: 14px; min-height: 20px;"></div>
                         </div>
                     </div>
 
@@ -1199,8 +1269,33 @@ Best regards,
             const previewHeader = document.getElementById('previewHeader');
             const previewCTA = document.getElementById('previewCTA');
             
-            // Update background
-            preview.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
+            // Check if a preset is selected and apply background pattern
+            const selectedPreset = document.querySelector('.preset-option.selected');
+            if (selectedPreset) {
+                const presetName = selectedPreset.getAttribute('data-preset');
+                const colors = presetColors[presetName];
+                
+                // Remove any existing pattern classes and clear inline background
+                preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+                preview.style.background = ''; // Clear inline background style
+                preview.style.backgroundImage = ''; // Clear background image
+                preview.style.backgroundSize = '';
+                preview.style.backgroundPosition = '';
+                preview.style.backgroundRepeat = '';
+                
+                // Apply the appropriate pattern class
+                if (presetName) {
+                    preview.classList.add(presetName + '-pattern');
+                }
+            } else {
+                // Remove pattern classes and use custom background
+                preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+                preview.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
+                preview.style.backgroundImage = ''; // Clear background image
+                preview.style.backgroundSize = '';
+                preview.style.backgroundPosition = '';
+                preview.style.backgroundRepeat = '';
+            }
             
             // Update button color and text
             spinButton.style.background = buttonColor;
@@ -1237,6 +1332,59 @@ Best regards,
                 (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
         }
 
+        // Background image upload functions
+        function handleBackgroundImageUpload() {
+            const fileInput = document.getElementById('bgPatternImage');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('gamePreview');
+                    
+                    // Remove any preset pattern classes
+                    preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+                    
+                    // Apply the uploaded image as background
+                    preview.style.background = `url('${e.target.result}')`;
+                    preview.style.backgroundSize = 'cover';
+                    preview.style.backgroundPosition = 'center';
+                    preview.style.backgroundRepeat = 'repeat';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function clearBackgroundImage() {
+            const fileInput = document.getElementById('bgPatternImage');
+            const preview = document.getElementById('gamePreview');
+            
+            // Clear the file input
+            fileInput.value = '';
+            
+            // Remove any preset pattern classes
+            preview.classList.remove('halloween-pattern', 'christmas-pattern', 'blackFriday-pattern');
+            
+            // Reset to default background or current preset
+            const selectedPreset = document.querySelector('.preset-option.selected');
+            if (selectedPreset) {
+                const presetName = selectedPreset.getAttribute('data-preset');
+                if (presetName) {
+                    preview.classList.add(presetName + '-pattern');
+                }
+            } else {
+                // Use custom background color
+                const bgColor = document.getElementById('bgColor').value;
+                preview.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
+            }
+            
+            // Clear background image styles
+            preview.style.backgroundImage = '';
+            preview.style.backgroundSize = '';
+            preview.style.backgroundPosition = '';
+            preview.style.backgroundRepeat = '';
+        }
+
         // Prize configuration functions
         let prizeCounter = 1;
 
@@ -1257,7 +1405,7 @@ Best regards,
                     </select>
                 </td>
                 <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                    <input type="text" id="discount-name-${prizeCounter}" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()">
+                    <input type="text" id="discount-name-${prizeCounter}" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()" oninput="updateWheelPreview()">
                 </td>
                 <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
                     <div style="display: flex; align-items: center; gap: 4px;">
@@ -1272,7 +1420,7 @@ Best regards,
                     </div>
                 </td>
                 <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
-                    <input type="number" id="segment-weight-${prizeCounter}" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(${prizeCounter})">
+                    <input type="number" id="segment-weight-${prizeCounter}" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(${prizeCounter})" oninput="updateWeightPercentage(${prizeCounter})">
                 </td>
                 <td style="padding: 12px 16px; text-align: center;">
                     <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(${prizeCounter})">×</button>
@@ -1324,49 +1472,134 @@ Best regards,
             document.getElementById('probability-total').textContent = total;
         }
 
+        // Save prize configuration
+        function savePrizeConfiguration() {
+            const saveButton = document.querySelector('button[onclick="savePrizeConfiguration()"]');
+            const saveStatus = document.getElementById('save-status');
+            
+            // Get all configured prizes
+            const prizes = getConfiguredPrizes();
+            
+            // Validate configuration
+            if (prizes.length === 0) {
+                saveStatus.innerHTML = '<span style="color: #d82c0d;">⚠️ Please add at least one prize before saving</span>';
+                return;
+            }
+            
+            const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
+            if (totalWeight > 12) {
+                saveStatus.innerHTML = '<span style="color: #d82c0d;">⚠️ Total segment weight cannot exceed 12</span>';
+                return;
+            }
+            
+            // Show saving state
+            saveButton.disabled = true;
+            saveButton.innerHTML = '⏳ Saving...';
+            saveStatus.innerHTML = '<span style="color: #6d7175;">Saving your prize configuration...</span>';
+            
+            // Simulate save operation (in real app, this would save to database)
+            setTimeout(() => {
+                // Store in localStorage for demo purposes
+                localStorage.setItem('shopify-checkout-games-prizes', JSON.stringify(prizes));
+                
+                // Show success message
+                saveButton.disabled = false;
+                saveButton.innerHTML = '✅ Saved Successfully!';
+                saveStatus.innerHTML = '<span style="color: #008060;">✓ Prize configuration saved successfully!</span>';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    saveButton.innerHTML = '💾 Save Prize Configuration';
+                    saveStatus.innerHTML = '';
+                }, 3000);
+                
+                console.log('Prize configuration saved:', prizes);
+            }, 1000);
+        }
+
+        // Load saved prize configuration
+        function loadSavedPrizeConfiguration() {
+            const savedPrizes = localStorage.getItem('shopify-checkout-games-prizes');
+            if (savedPrizes) {
+                try {
+                    const prizes = JSON.parse(savedPrizes);
+                    if (prizes && prizes.length > 0) {
+                        // Clear existing prizes (except the first one)
+                        const existingRows = document.querySelectorAll('.prize-row');
+                        existingRows.forEach((row, index) => {
+                            if (index > 0) { // Keep the first row, remove others
+                                row.remove();
+                            }
+                        });
+                        
+                        // Reset prize counter
+                        prizeCounter = 1;
+                        
+                        // Load saved prizes
+                        prizes.forEach((prize, index) => {
+                            if (index === 0) {
+                                // Update the first existing row
+                                const nameInput = document.getElementById('discount-name-1');
+                                const weightInput = document.getElementById('segment-weight-1');
+                                if (nameInput && weightInput) {
+                                    nameInput.value = prize.name;
+                                    weightInput.value = prize.weight;
+                                }
+                            } else {
+                                // Add new rows for additional prizes
+                                addPrize();
+                                const nameInput = document.getElementById(`discount-name-${prizeCounter}`);
+                                const weightInput = document.getElementById(`segment-weight-${prizeCounter}`);
+                                if (nameInput && weightInput) {
+                                    nameInput.value = prize.name;
+                                    weightInput.value = prize.weight;
+                                }
+                            }
+                        });
+                        
+                        // Update displays
+                        updateProbabilityTotal();
+                        updateWheelPreview();
+                        
+                        console.log('Loaded saved prize configuration:', prizes);
+                    }
+                } catch (error) {
+                    console.error('Error loading saved prize configuration:', error);
+                }
+            }
+        }
+
         // Preset color configurations
         const presetColors = {
-            sunset: { 
-                color1: '#ff6b6b', 
-                color2: '#feca57',
+            halloween: { 
+                color1: '#F28C38', // Halloween orange
+                color2: '#4B0082', // Purple
                 textColor: '#ffffff',
-                bgColor: '#ff6b6b',
-                buttonColor: '#feca57'
+                bgColor: '#000000', // Black background
+                buttonColor: '#F28C38',
+                font: 'Creepster',
+                fontUrl: 'https://fonts.googleapis.com/css2?family=Creepster',
+                text: 'Spin for a Spooky Deal!'
             },
-            ocean: { 
-                color1: '#4ecdc4', 
-                color2: '#44a08d',
+            blackFriday: { 
+                color1: '#FF0000', // Red
+                color2: '#FFD700', // Gold
                 textColor: '#ffffff',
-                bgColor: '#4ecdc4',
-                buttonColor: '#44a08d'
+                bgColor: '#000000', // Black background
+                buttonColor: '#FF0000',
+                font: 'Impact',
+                fontUrl: 'https://fonts.googleapis.com/css2?family=Impact',
+                text: 'Spin for Big Savings!'
             },
-            forest: { 
-                color1: '#2ecc71', 
-                color2: '#27ae60',
+            christmas: { 
+                color1: '#CC0000', // Christmas red
+                color2: '#006400', // Christmas green
                 textColor: '#ffffff',
-                bgColor: '#2ecc71',
-                buttonColor: '#27ae60'
-            },
-            berry: { 
-                color1: '#9b59b6', 
-                color2: '#8e44ad',
-                textColor: '#ffffff',
-                bgColor: '#9b59b6',
-                buttonColor: '#8e44ad'
-            },
-            fire: { 
-                color1: '#e74c3c', 
-                color2: '#c0392b',
-                textColor: '#ffffff',
-                bgColor: '#e74c3c',
-                buttonColor: '#c0392b'
-            },
-            gold: { 
-                color1: '#f1c40f', 
-                color2: '#f39c12',
-                textColor: '#2c3e50',
-                bgColor: '#f1c40f',
-                buttonColor: '#f39c12'
+                bgColor: '#000000', // Black background
+                buttonColor: '#CC0000',
+                font: 'Mountains of Christmas',
+                fontUrl: 'https://fonts.googleapis.com/css2?family=Mountains+of+Christmas',
+                text: 'Spin for Festive Discounts!'
             }
         };
 
@@ -1387,7 +1620,7 @@ Best regards,
                 buttonColorGroup.style.display = 'none';
                 // Set default preset if none selected
                 if (!document.querySelector('.preset-option.selected')) {
-                    selectPreset('sunset');
+                    selectPreset('halloween');
                 }
             } else {
                 presetColorsDiv.style.display = 'none';
@@ -1433,6 +1666,11 @@ Best regards,
             document.getElementById('buttonTextColor').value = colors.textColor;
             document.getElementById('buttonTextColorText').value = colors.textColor;
             
+            // Update custom text with preset text
+            if (colors.text) {
+                document.getElementById('campaignHeader').value = colors.text;
+            }
+            
             // Update wheel preview
             updateWheelPreview();
             updateGamePreview();
@@ -1443,7 +1681,14 @@ Best regards,
             updateWheelPreview();
             updateGamePreview();
             // Set default preset
-            selectPreset('sunset');
+            selectPreset('halloween');
+            // Update wheel preview again after preset is applied
+            setTimeout(() => {
+                updateWheelPreview();
+            }, 100);
+            
+            // Load saved prize configuration if available
+            loadSavedPrizeConfiguration();
             
             // Add event listeners for color text inputs
             document.getElementById('headerColorText').addEventListener('input', function() {
