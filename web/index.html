@@ -180,6 +180,29 @@
             color: white;
         }
         
+        /* Preset color selection styles */
+        .preset-option {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .preset-option:hover {
+            background: #f6f6f7;
+            border-color: #c9cccf;
+        }
+        
+        .preset-option.selected {
+            background: #e3f2fd;
+            border-color: #008060;
+        }
+        
+        .preset-option.selected .preset-preview {
+            border-color: #008060 !important;
+        }
+        
         /* Setup Section */
         .setup-section {
             background: white;
@@ -667,7 +690,7 @@
                     <div class="nav-tabs-container">
                         <button class="nav-tab active" onclick="showTab('game-settings')">Game Settings</button>
                         <button class="nav-tab" onclick="showTab('send-emails')">Send Emails</button>
-                        <button class="nav-tab" onclick="showTab('discounts')">Discounts</button>
+
                         <button class="nav-tab" onclick="showTab('design')">Design, Colors & Text</button>
                         <button class="nav-tab" onclick="showTab('tab')">Tab</button>
                         <button class="nav-tab" onclick="showTab('countdown')">Countdown Banner</button>
@@ -684,22 +707,70 @@
                             <div class="form-section">
                                 <h3>Configure Game</h3>
                                 
-                                <!-- Colors Configuration -->
+                                <!-- Color Configuration -->
                                 <div class="form-group">
-                                    <label>Wheel Colors (2 colors)</label>
-                                    <div class="form-row">
-                                        <div class="color-input-group">
-                                            <input type="color" id="wheelColor1" value="#ff6b6b" onchange="updateWheelPreview()">
-                                            <input type="text" id="wheelColor1Text" value="#ff6b6b" placeholder="Color code">
+                                    <label>Wheel Color Selection</label>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+                                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                                <input type="radio" name="colorMode" value="preset" id="presetMode" onchange="toggleColorMode()" checked>
+                                                <span>Select Preset</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                                <input type="radio" name="colorMode" value="custom" id="customMode" onchange="toggleColorMode()">
+                                                <span>Customize Colors</span>
+                                            </label>
                                         </div>
-                                        <div class="color-input-group">
-                                            <input type="color" id="wheelColor2" value="#4ecdc4" onchange="updateWheelPreview()">
-                                            <input type="text" id="wheelColor2Text" value="#4ecdc4" placeholder="Color code">
+                                    </div>
+                                    
+                                    <!-- Preset Colors -->
+                                    <div id="presetColors" class="form-group">
+                                        <label style="font-size: 12px; color: #6d7175; margin-bottom: 8px; display: block;">Choose a preset color scheme:</label>
+                                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                            <div class="preset-option" onclick="selectPreset('sunset')" data-preset="sunset">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #ff6b6b, #feca57); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Sunset</span>
+                                            </div>
+                                            <div class="preset-option" onclick="selectPreset('ocean')" data-preset="ocean">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #4ecdc4, #44a08d); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Ocean</span>
+                                            </div>
+                                            <div class="preset-option" onclick="selectPreset('forest')" data-preset="forest">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #2ecc71, #27ae60); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Forest</span>
+                                            </div>
+                                            <div class="preset-option" onclick="selectPreset('berry')" data-preset="berry">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #9b59b6, #8e44ad); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Berry</span>
+                                            </div>
+                                            <div class="preset-option" onclick="selectPreset('fire')" data-preset="fire">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #e74c3c, #c0392b); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Fire</span>
+                                            </div>
+                                            <div class="preset-option" onclick="selectPreset('gold')" data-preset="gold">
+                                                <div class="preset-preview" style="background: linear-gradient(45deg, #f1c40f, #f39c12); height: 40px; border-radius: 6px; border: 2px solid #e1e3e5;"></div>
+                                                <span style="font-size: 12px; color: #6d7175; margin-top: 4px; display: block;">Gold</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Custom Colors -->
+                                    <div id="customColors" class="form-group" style="display: none;">
+                                        <label style="font-size: 12px; color: #6d7175; margin-bottom: 8px; display: block;">Customize your wheel colors:</label>
+                                        <div class="form-row">
+                                            <div class="color-input-group">
+                                                <input type="color" id="wheelColor1" value="#ff6b6b" onchange="updateWheelPreview()">
+                                                <input type="text" id="wheelColor1Text" value="#ff6b6b" placeholder="Color code">
+                                            </div>
+                                            <div class="color-input-group">
+                                                <input type="color" id="wheelColor2" value="#4ecdc4" onchange="updateWheelPreview()">
+                                                <input type="text" id="wheelColor2Text" value="#4ecdc4" placeholder="Color code">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" id="bgColorGroup">
                                     <label>Background Color</label>
                                     <div class="color-input-group">
                                         <input type="color" id="bgColor" value="#667eea" onchange="updateGamePreview()">
@@ -707,7 +778,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" id="buttonColorGroup">
                                     <label>Spin Button Color</label>
                                     <div class="color-input-group">
                                         <input type="color" id="buttonColor" value="#000000" onchange="updateGamePreview()">
@@ -715,29 +786,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Number of Wheel Sections</label>
-                                        <select id="wheelSections" onchange="updateWheelPreview()">
-                                            <option value="3">3 sections</option>
-                                            <option value="4">4 sections</option>
-                                            <option value="5">5 sections</option>
-                                            <option value="6" selected>6 sections</option>
-                                            <option value="7">7 sections</option>
-                                            <option value="8">8 sections</option>
-                                            <option value="9">9 sections</option>
-                                            <option value="10">10 sections</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Font Size</label>
-                                        <select id="fontSize" onchange="updateGamePreview()">
-                                            <option value="12">Small (12px)</option>
-                                            <option value="14" selected>Medium (14px)</option>
-                                            <option value="16">Large (16px)</option>
-                                            <option value="18">Extra Large (18px)</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label>Font Size</label>
+                                    <select id="fontSize" onchange="updateGamePreview()">
+                                        <option value="12">Small (12px)</option>
+                                        <option value="14" selected>Medium (14px)</option>
+                                        <option value="16">Large (16px)</option>
+                                        <option value="18">Extra Large (18px)</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -752,32 +808,39 @@
                                     </select>
                                 </div>
 
+                                <!-- Popup Text Configuration -->
                                 <div class="form-group">
-                                    <label>Customer Image (displayed next to wheel)</label>
-                                    <input type="file" id="customerImage" accept="image/*" onchange="updateGamePreview()">
-                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload an image to display next to the wheel (recommended: 120x120px)</small>
+                                    <label>Campaign Header</label>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="text" id="campaignHeader" value="Spin for a chance to win" onchange="updateGamePreview()" style="flex: 1; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                        <input type="color" id="headerColor" value="#ffffff" onchange="updateGamePreview()" style="width: 40px; height: 40px; padding: 0; border: 1px solid #c9cccf; border-radius: 4px;">
+                                        <input type="text" id="headerColorText" value="#ffffff" placeholder="Color" onchange="updateGamePreview()" style="width: 80px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 12px;">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Background Image (optional)</label>
-                                    <input type="file" id="bgImage" accept="image/*" onchange="updateGamePreview()">
-                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload a background image (will override background color)</small>
+                                    <label>Call to Action</label>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="text" id="callToAction" value="Subscribe to our newsletter and updates!" onchange="updateGamePreview()" style="flex: 1; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                        <input type="color" id="ctaColor" value="#ffffff" onchange="updateGamePreview()" style="width: 40px; height: 40px; padding: 0; border: 1px solid #c9cccf; border-radius: 4px;">
+                                        <input type="text" id="ctaColorText" value="#ffffff" placeholder="Color" onchange="updateGamePreview()" style="width: 80px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 12px;">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Logo</label>
-                                    <input type="file" id="logo" accept="image/*" onchange="updateGamePreview()">
-                                    <small style="color: #6d7175; margin-top: 4px; display: block;">Upload your brand logo</small>
+                                    <label>Spin Button Text</label>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="text" id="spinButtonText" value="Try your luck!" onchange="updateGamePreview()" style="flex: 1; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                        <input type="color" id="buttonTextColor" value="#ffffff" onchange="updateGamePreview()" style="width: 40px; height: 40px; padding: 0; border: 1px solid #c9cccf; border-radius: 4px;">
+                                        <input type="text" id="buttonTextColorText" value="#ffffff" placeholder="Color" onchange="updateGamePreview()" style="width: 80px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 12px;">
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Logo Position</label>
-                                    <select id="logoPosition" onchange="updateGamePreview()">
-                                        <option value="above">Above the wheel</option>
-                                        <option value="middle" selected>In the middle of the wheel</option>
-                                        <option value="below">Below the spin button</option>
-                                    </select>
-                                </div>
+
+
+
+
+
                             </div>
 
                             <!-- Preview Game Section -->
@@ -789,20 +852,78 @@
                                     <div class="game-preview" id="gamePreview">
                                         <button class="close-btn">×</button>
                                         <div class="game-preview-content">
-                                            <div class="customer-image" id="previewCustomerImage">
-                                                <div>Customer<br>Image</div>
-                                            </div>
                                             <div class="wheel-section">
                                                 <div class="wheel" id="previewWheel">
                                                     <div class="wheel-center"></div>
                                                 </div>
-                                                <div class="wheel-text">Take a spin for a chance to win discounts of up to 50%!</div>
-                                                <div class="wheel-subtext">Provide your email address for a chance to win a discount on your order.</div>
+                                                <div class="wheel-text" id="previewHeader">Take a spin for a chance to win discounts of up to 50%!</div>
+                                                <div class="wheel-subtext" id="previewCTA">Provide your email address for a chance to win a discount on your order.</div>
                                                 <input type="email" class="email-input" placeholder="Email address">
-                                                <button class="spin-button" id="previewSpinButton">Spin the Wheel</button>
+                                                <button class="spin-button" id="previewSpinButton">Try your luck!</button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prize Configuration Section -->
+                        <div class="form-section" style="margin-top: 32px;">
+                            <h3>Prize Configuration</h3>
+                            <p style="color: #6d7175; margin-bottom: 16px;">Configure prizes for your 12-segment wheel. Each prize can have multiple segments based on weight.</p>
+                            
+                            <!-- Prize Configuration Table -->
+                            <div style="background: white; border: 1px solid #e1e3e5; border-radius: 8px; overflow: hidden;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #f6f6f7; border-bottom: 1px solid #e1e3e5;">
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Discount Type</th>
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Discount Name</th>
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Discount Amount</th>
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Minimum Spend</th>
+                                            <th style="padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6d7175; border-right: 1px solid #e1e3e5;">Probability</th>
+                                            <th style="padding: 12px 16px; text-align: center; font-size: 12px; font-weight: 600; color: #6d7175; width: 60px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="prizes-container">
+                                        <tr class="prize-row" data-prize-id="1" style="border-bottom: 1px solid #e1e3e5;">
+                                            <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                                                <select id="discount-type-1" onchange="updateDiscountDisplay(1)" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; background: white;">
+                                                    <option value="percentage">% Discount</option>
+                                                    <option value="fixed">$ Off</option>
+                                                    <option value="freeshipping">Free Shipping</option>
+                                                </select>
+                                            </td>
+                                            <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                                                <input type="text" id="discount-name-1" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()">
+                                            </td>
+                                            <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                                                <div style="display: flex; align-items: center; gap: 4px;">
+                                                    <input type="number" id="discount-amount-1" placeholder="10" min="0" step="1" style="flex: 1; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                                    <span id="discount-unit-1" style="font-size: 14px; color: #202223; font-weight: 500; white-space: nowrap;">%</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                                                <div style="display: flex; align-items: center; gap: 4px;">
+                                                    <input type="number" id="min-spend-1" placeholder="0" min="0" step="0.01" style="flex: 1; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                                                    <span style="font-size: 14px; color: #202223; font-weight: 500;">$</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                                                <input type="number" id="segment-weight-1" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(1)">
+                                            </td>
+                                            <td style="padding: 12px 16px; text-align: center;">
+                                                <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(1)">×</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                                <button class="btn btn-secondary" onclick="addPrize()">+ Add Discount</button>
+                                <div style="font-size: 14px; color: #6d7175;">
+                                    Probability Total: <span id="probability-total">1</span>
                                 </div>
                             </div>
                         </div>
@@ -843,37 +964,7 @@ Best regards,
                         </div>
                     </div>
 
-                    <!-- Discounts Tab -->
-                    <div id="discounts" class="tab-panel">
-                        <div class="form-section">
-                            <h3>Prize Configuration</h3>
-                            <p style="color: #6d7175; margin-bottom: 16px;">Configure up to 6 prizes with their win probabilities</p>
-                            
-                            <div style="background: #f6f6f7; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
-                                <h4 style="margin-bottom: 12px;">Prize 1</h4>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
-                                    <div>
-                                        <label style="font-size: 12px; color: #6d7175;">Prize Type</label>
-                                        <select style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
-                                            <option>Discount Code</option>
-                                            <option>Free Shipping</option>
-                                            <option>Free Gift</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label style="font-size: 12px; color: #6d7175;">Value</label>
-                                        <input type="text" placeholder="e.g., 10% OFF" style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
-                                    </div>
-                                    <div>
-                                        <label style="font-size: 12px; color: #6d7175;">Probability (%)</label>
-                                        <input type="number" value="20" min="0" max="100" style="width: 100%; padding: 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <button class="btn btn-secondary">+ Add Prize</button>
-                        </div>
-                    </div>
+
 
                     <!-- Design Tab -->
                     <div id="design" class="tab-panel">
@@ -965,29 +1056,120 @@ Best regards,
         function updateWheelPreview() {
             const color1 = document.getElementById('wheelColor1').value;
             const color2 = document.getElementById('wheelColor2').value;
-            const sections = parseInt(document.getElementById('wheelSections').value);
+            const sections = 12; // Fixed 12 sections for MVP
             
             // Update color text inputs
             document.getElementById('wheelColor1Text').value = color1;
             document.getElementById('wheelColor2Text').value = color2;
             
-            // Create gradient based on number of sections
+            // Get all configured prizes
+            const prizes = getConfiguredPrizes();
+            
+            // Create gradient and populate wheel segments
             let gradient = '';
             const anglePerSection = 360 / sections;
+            const wheel = document.getElementById('previewWheel');
             
-            for (let i = 0; i < sections; i++) {
-                const startAngle = i * anglePerSection;
-                const endAngle = (i + 1) * anglePerSection;
-                const color = i % 2 === 0 ? color1 : color2; // Changed to 2 colors
+            // Clear existing wheel content
+            wheel.innerHTML = '<div class="wheel-center"></div>';
+            
+            // Populate wheel with prizes
+            let currentSegment = 0;
+            prizes.forEach((prize, index) => {
+                for (let i = 0; i < prize.weight; i++) {
+                    if (currentSegment < sections) {
+                        const startAngle = currentSegment * anglePerSection;
+                        const endAngle = (currentSegment + 1) * anglePerSection;
+                        const color = currentSegment % 2 === 0 ? color1 : color2;
+                        gradient += `${color} ${startAngle}deg ${endAngle}deg`;
+                        if (currentSegment < sections - 1) gradient += ', ';
+                        
+                        // Add segment text
+                        const segmentText = document.createElement('div');
+                        segmentText.className = 'wheel-segment-text';
+                        segmentText.textContent = prize.name || 'No Prize';
+                        segmentText.style.cssText = `
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(${startAngle + anglePerSection/2}deg) translateY(-60px) rotate(90deg);
+                            font-size: 10px;
+                            font-weight: 600;
+                            color: white;
+                            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+                            white-space: nowrap;
+                            max-width: 80px;
+                            text-align: center;
+                            line-height: 1.2;
+                        `;
+                        wheel.appendChild(segmentText);
+                        
+                        currentSegment++;
+                    }
+                }
+            });
+            
+            // Fill remaining segments with "No Prize"
+            while (currentSegment < sections) {
+                const startAngle = currentSegment * anglePerSection;
+                const endAngle = (currentSegment + 1) * anglePerSection;
+                const color = currentSegment % 2 === 0 ? color1 : color2;
                 gradient += `${color} ${startAngle}deg ${endAngle}deg`;
-                if (i < sections - 1) gradient += ', ';
+                if (currentSegment < sections - 1) gradient += ', ';
+                
+                // Add "No Prize" text
+                const segmentText = document.createElement('div');
+                segmentText.className = 'wheel-segment-text';
+                segmentText.textContent = 'No Prize';
+                segmentText.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(${startAngle + anglePerSection/2}deg) translateY(-60px) rotate(90deg);
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: white;
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+                    white-space: nowrap;
+                    max-width: 80px;
+                    text-align: center;
+                    line-height: 1.2;
+                `;
+                wheel.appendChild(segmentText);
+                
+                currentSegment++;
             }
             
-            const wheel = document.getElementById('previewWheel');
             wheel.style.background = `conic-gradient(from 0deg, ${gradient})`;
             
             // Update arrow color using CSS custom property
             wheel.style.setProperty('--arrow-color', 'white'); // Set arrow color to white
+        }
+        
+        // Get all configured prizes from the table
+        function getConfiguredPrizes() {
+            const prizes = [];
+            const prizeRows = document.querySelectorAll('.prize-row');
+            
+            prizeRows.forEach(row => {
+                const prizeId = row.getAttribute('data-prize-id');
+                const nameInput = document.getElementById(`discount-name-${prizeId}`);
+                const weightInput = document.getElementById(`segment-weight-${prizeId}`);
+                
+                if (nameInput && weightInput) {
+                    const name = nameInput.value.trim();
+                    const weight = parseInt(weightInput.value) || 0;
+                    
+                    if (weight > 0) {
+                        prizes.push({
+                            name: name || 'Unnamed Prize',
+                            weight: weight
+                        });
+                    }
+                }
+            });
+            
+            return prizes;
         }
 
         // Update game preview
@@ -997,20 +1179,48 @@ Best regards,
             const fontSize = document.getElementById('fontSize').value;
             const fontType = document.getElementById('fontType').value;
             
+            // Get text content and colors
+            const campaignHeader = document.getElementById('campaignHeader').value;
+            const callToAction = document.getElementById('callToAction').value;
+            const spinButtonText = document.getElementById('spinButtonText').value;
+            const headerColor = document.getElementById('headerColor').value;
+            const ctaColor = document.getElementById('ctaColor').value;
+            const buttonTextColor = document.getElementById('buttonTextColor').value;
+            
             // Update color text inputs
             document.getElementById('bgColorText').value = bgColor;
             document.getElementById('buttonColorText').value = buttonColor;
+            document.getElementById('headerColorText').value = headerColor;
+            document.getElementById('ctaColorText').value = ctaColor;
+            document.getElementById('buttonTextColorText').value = buttonTextColor;
             
             const preview = document.getElementById('gamePreview');
             const spinButton = document.getElementById('previewSpinButton');
+            const previewHeader = document.getElementById('previewHeader');
+            const previewCTA = document.getElementById('previewCTA');
             
             // Update background
             preview.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
             
-            // Update button color
+            // Update button color and text
             spinButton.style.background = buttonColor;
+            spinButton.style.color = buttonTextColor;
+            spinButton.textContent = spinButtonText;
+            spinButton.style.fontSize = fontSize + 'px';
+            spinButton.style.fontFamily = fontType;
             
-            // Update font
+            // Update text content and colors
+            previewHeader.textContent = campaignHeader;
+            previewHeader.style.color = headerColor;
+            previewHeader.style.fontSize = fontSize + 'px';
+            previewHeader.style.fontFamily = fontType;
+            
+            previewCTA.textContent = callToAction;
+            previewCTA.style.color = ctaColor;
+            previewCTA.style.fontSize = (parseInt(fontSize) - 2) + 'px'; // Slightly smaller for subtitle
+            previewCTA.style.fontFamily = fontType;
+            
+            // Update overall preview font
             preview.style.fontSize = fontSize + 'px';
             preview.style.fontFamily = fontType;
         }
@@ -1027,10 +1237,262 @@ Best regards,
                 (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
         }
 
+        // Prize configuration functions
+        let prizeCounter = 1;
+
+        function addPrize() {
+            prizeCounter++;
+            const container = document.getElementById('prizes-container');
+            const newRow = document.createElement('tr');
+            newRow.className = 'prize-row';
+            newRow.setAttribute('data-prize-id', prizeCounter);
+            newRow.style.cssText = 'border-bottom: 1px solid #e1e3e5;';
+            
+            newRow.innerHTML = `
+                <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                    <select id="discount-type-${prizeCounter}" onchange="updateDiscountDisplay(${prizeCounter})" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; background: white;">
+                        <option value="percentage">% Discount</option>
+                        <option value="fixed">$ Off</option>
+                        <option value="freeshipping">Free Shipping</option>
+                    </select>
+                </td>
+                <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                    <input type="text" id="discount-name-${prizeCounter}" placeholder="e.g., 10% OFF" style="width: 100%; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;" onchange="updateWheelPreview()">
+                </td>
+                <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <input type="number" id="discount-amount-${prizeCounter}" placeholder="10" min="0" step="1" style="flex: 1; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                        <span id="discount-unit-${prizeCounter}" style="font-size: 14px; color: #202223; font-weight: 500; white-space: nowrap;">%</span>
+                    </div>
+                </td>
+                <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <input type="number" id="min-spend-${prizeCounter}" placeholder="0" min="0" step="0.01" style="flex: 1; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px;">
+                        <span style="font-size: 14px; color: #202223; font-weight: 500;">$</span>
+                    </div>
+                </td>
+                <td style="padding: 12px 16px; border-right: 1px solid #e1e3e5;">
+                    <input type="number" id="segment-weight-${prizeCounter}" value="1" min="1" max="12" style="width: 60px; padding: 6px 8px; border: 1px solid #c9cccf; border-radius: 4px; font-size: 14px; text-align: center;" onchange="updateWeightPercentage(${prizeCounter})">
+                </td>
+                <td style="padding: 12px 16px; text-align: center;">
+                    <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="removePrize(${prizeCounter})">×</button>
+                </td>
+            `;
+            
+            container.appendChild(newRow);
+            updateProbabilityTotal();
+            updateWheelPreview();
+        }
+
+        function removePrize(prizeId) {
+            const prizeElement = document.querySelector(`[data-prize-id="${prizeId}"]`);
+            if (prizeElement) {
+                prizeElement.remove();
+                updateProbabilityTotal();
+                updateWheelPreview();
+            }
+        }
+
+        function updateDiscountDisplay(prizeId) {
+            const discountType = document.getElementById(`discount-type-${prizeId}`).value;
+            const unitElement = document.getElementById(`discount-unit-${prizeId}`);
+            const amountInput = document.getElementById(`discount-amount-${prizeId}`);
+            
+            if (discountType === 'percentage') {
+                unitElement.textContent = '%';
+            } else if (discountType === 'fixed') {
+                unitElement.textContent = '$';
+            } else if (discountType === 'freeshipping') {
+                unitElement.textContent = 'Free Shipping';
+                amountInput.style.display = 'none';
+            }
+        }
+
+        function updateWeightPercentage(prizeId) {
+            updateProbabilityTotal();
+            updateWheelPreview();
+        }
+
+        function updateProbabilityTotal() {
+            const weightInputs = document.querySelectorAll('[id^="segment-weight-"]');
+            let total = 0;
+            
+            weightInputs.forEach(input => {
+                total += parseInt(input.value) || 0;
+            });
+            
+            document.getElementById('probability-total').textContent = total;
+        }
+
+        // Preset color configurations
+        const presetColors = {
+            sunset: { 
+                color1: '#ff6b6b', 
+                color2: '#feca57',
+                textColor: '#ffffff',
+                bgColor: '#ff6b6b',
+                buttonColor: '#feca57'
+            },
+            ocean: { 
+                color1: '#4ecdc4', 
+                color2: '#44a08d',
+                textColor: '#ffffff',
+                bgColor: '#4ecdc4',
+                buttonColor: '#44a08d'
+            },
+            forest: { 
+                color1: '#2ecc71', 
+                color2: '#27ae60',
+                textColor: '#ffffff',
+                bgColor: '#2ecc71',
+                buttonColor: '#27ae60'
+            },
+            berry: { 
+                color1: '#9b59b6', 
+                color2: '#8e44ad',
+                textColor: '#ffffff',
+                bgColor: '#9b59b6',
+                buttonColor: '#8e44ad'
+            },
+            fire: { 
+                color1: '#e74c3c', 
+                color2: '#c0392b',
+                textColor: '#ffffff',
+                bgColor: '#e74c3c',
+                buttonColor: '#c0392b'
+            },
+            gold: { 
+                color1: '#f1c40f', 
+                color2: '#f39c12',
+                textColor: '#2c3e50',
+                bgColor: '#f1c40f',
+                buttonColor: '#f39c12'
+            }
+        };
+
+        // Toggle between preset and custom color modes
+        function toggleColorMode() {
+            const presetMode = document.getElementById('presetMode');
+            const customMode = document.getElementById('customMode');
+            const presetColorsDiv = document.getElementById('presetColors');
+            const customColorsDiv = document.getElementById('customColors');
+            const bgColorGroup = document.getElementById('bgColorGroup');
+            const buttonColorGroup = document.getElementById('buttonColorGroup');
+            
+            if (presetMode.checked) {
+                presetColorsDiv.style.display = 'block';
+                customColorsDiv.style.display = 'none';
+                // Hide background and button color controls in preset mode
+                bgColorGroup.style.display = 'none';
+                buttonColorGroup.style.display = 'none';
+                // Set default preset if none selected
+                if (!document.querySelector('.preset-option.selected')) {
+                    selectPreset('sunset');
+                }
+            } else {
+                presetColorsDiv.style.display = 'none';
+                customColorsDiv.style.display = 'block';
+                // Show background and button color controls in custom mode
+                bgColorGroup.style.display = 'block';
+                buttonColorGroup.style.display = 'block';
+                // Clear preset selection
+                document.querySelectorAll('.preset-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+            }
+        }
+
+        // Select a preset color scheme
+        function selectPreset(presetName) {
+            // Remove selection from all presets
+            document.querySelectorAll('.preset-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked preset
+            document.querySelector(`[data-preset="${presetName}"]`).classList.add('selected');
+            
+            // Update color inputs with preset values
+            const colors = presetColors[presetName];
+            document.getElementById('wheelColor1').value = colors.color1;
+            document.getElementById('wheelColor1Text').value = colors.color1;
+            document.getElementById('wheelColor2').value = colors.color2;
+            document.getElementById('wheelColor2Text').value = colors.color2;
+            
+            // Update background and button colors with preset values
+            document.getElementById('bgColor').value = colors.bgColor;
+            document.getElementById('bgColorText').value = colors.bgColor;
+            document.getElementById('buttonColor').value = colors.buttonColor;
+            document.getElementById('buttonColorText').value = colors.buttonColor;
+            
+            // Update text colors with preset values
+            document.getElementById('headerColor').value = colors.textColor;
+            document.getElementById('headerColorText').value = colors.textColor;
+            document.getElementById('ctaColor').value = colors.textColor;
+            document.getElementById('ctaColorText').value = colors.textColor;
+            document.getElementById('buttonTextColor').value = colors.textColor;
+            document.getElementById('buttonTextColorText').value = colors.textColor;
+            
+            // Update wheel preview
+            updateWheelPreview();
+            updateGamePreview();
+        }
+
         // Initialize previews
         document.addEventListener('DOMContentLoaded', function() {
             updateWheelPreview();
             updateGamePreview();
+            // Set default preset
+            selectPreset('sunset');
+            
+            // Add event listeners for color text inputs
+            document.getElementById('headerColorText').addEventListener('input', function() {
+                document.getElementById('headerColor').value = this.value;
+                updateGamePreview();
+            });
+            
+            document.getElementById('ctaColorText').addEventListener('input', function() {
+                document.getElementById('ctaColor').value = this.value;
+                updateGamePreview();
+            });
+            
+            document.getElementById('buttonTextColorText').addEventListener('input', function() {
+                document.getElementById('buttonTextColor').value = this.value;
+                updateGamePreview();
+            });
+            
+            // Add event listeners for color pickers to sync with text inputs
+            document.getElementById('headerColor').addEventListener('change', function() {
+                document.getElementById('headerColorText').value = this.value;
+            });
+            
+            document.getElementById('ctaColor').addEventListener('change', function() {
+                document.getElementById('ctaColorText').value = this.value;
+            });
+            
+            document.getElementById('buttonTextColor').addEventListener('change', function() {
+                document.getElementById('buttonTextColorText').value = this.value;
+            });
+            
+            // Add event listeners for background and button color text inputs
+            document.getElementById('bgColorText').addEventListener('input', function() {
+                document.getElementById('bgColor').value = this.value;
+                updateGamePreview();
+            });
+            
+            document.getElementById('buttonColorText').addEventListener('input', function() {
+                document.getElementById('buttonColor').value = this.value;
+                updateGamePreview();
+            });
+            
+            // Add event listeners for background and button color pickers to sync with text inputs
+            document.getElementById('bgColor').addEventListener('change', function() {
+                document.getElementById('bgColorText').value = this.value;
+            });
+            
+            document.getElementById('buttonColor').addEventListener('change', function() {
+                document.getElementById('buttonColorText').value = this.value;
+            });
         });
     </script>
 </body>
